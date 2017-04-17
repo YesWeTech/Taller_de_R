@@ -18,3 +18,11 @@ $ pacaur -S rstudio-desktop
 
 También podemos [descargar directamente](https://www.rstudio.com/products/rstudio/download/) _Rstudio_ de su página oficial. Hay disponibles instaladores para __Windows__, __Mac OS__, __Ubuntu__ y __Fedora__.
 
+## Clonando el repositorio
+Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rstudio_ seguimos los siguientes pasos:
+
+1. File > New Project
+2. Version control
+3. Copiamos la URL del repositorio
+4. Confirmamos.
+
