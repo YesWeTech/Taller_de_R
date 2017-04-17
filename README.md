@@ -10,7 +10,7 @@ Para instalar _Rstudio_ en __Ubuntu__ o __Debian__:
 $ sudo apt install rstudio
 ```
 
-Para instalar _Rstudio_ en __Arch Linux__ (la instalación ser bastante larga pues se compilará):
+Para instalar _Rstudio_ en __Arch Linux__ (la instalación será bastante larga pues se compilará):
 
 ```bash
 $ pacaur -S rstudio-desktop
