@@ -26,3 +26,6 @@ Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rst
 3. Copiamos la URL del repositorio
 4. Confirmamos.
 
+## Más recursos y material
+
+* [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r)
