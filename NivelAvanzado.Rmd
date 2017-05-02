@@ -9,14 +9,29 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Tutorial para Nivel Avanzado de R
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+En este tutorial vamos a aprender como enfrentarnos a una competición de **Kaggle**. Utilizaremos nuestros conocimientos en R y Machine Learning.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+La competición que hemos elegido es **Titanic: Machine Learning from Disaster**: <https://www.kaggle.com/c/titanic>.
 
-```{r cars}
-summary(cars)
+Titanic fue un transatlántico que naufragó la noche del 14 de abril de 1912 al chocar contra un iceberg. Este hecho provocó la muerte de 1.515 personas (de un total de 2.224). Debido a las consecuencias de esta tragedia, el naufragió del Titanic se ha convertido en un de los más famosos de la historia. 
+
+El objetivo de esta competición es el de predecir que personas sobrevivieron. 
+
+
+## Descargar los Datasets
+
+El primer paso que debemos realizar es la descarga de datos. Para ellos, iremos al link: <https://www.kaggle.com/c/titanic/data> y procederemos a la descarga.
+
+Los archivos los guardaremos en una carpeta que llamaremos **data**.
+
+## Importar los Datasets a R
+
+Primero vamos a configurar nuestro espacio de trabajo. Para ello, vamos a decirle a R en qué carpeta vamos a trabajar
+
+```{}
+setwd("C:/Users/Ana/Dropbox (Personal)/AlhambraAnalytics/TallerR/")
 ```
 
 ## Including Plots
