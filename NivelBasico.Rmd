@@ -32,6 +32,8 @@ Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_
 
 Para ejecutar las líneas del _script_ podemos usar _Run_ o hacer _Ctrl+Intro_.
 
+Para añadir comentarios, utiliza la almohadilla: #.
+
 ### Instalando paquetes nuevos
 
 Para instalar paquetes nuevos en R, tenemos dos opciones: 
@@ -41,7 +43,8 @@ Para instalar paquetes nuevos en R, tenemos dos opciones:
 install.packages('nombre_del_paquete')
 ```
 * Usar el gestor de paquetes (pestaña _Packages -> Install_)
-![](imgs/instalar_paquetes.png)
+
+![](imgs/instalar_paquete.png)
 Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
 
 ```{r}
@@ -79,7 +82,16 @@ Así, podemos ponerle nombre a cualquier operación, además de a funciones. Ten
 
 ### Operadores
 
+Los operadores numéricos básicos de R son:
 
+Operador | Símbolo
+-------- | -------
+Suma     | +
+Resta    | - 
+Multiplicación | *
+División | /
+Exponente | ^
+Módulo | %%
 
 ## Tipos de datos
 
