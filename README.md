@@ -31,3 +31,5 @@ Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rst
 * [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r)
 
 * [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets)
+
+* [Chuleta Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
