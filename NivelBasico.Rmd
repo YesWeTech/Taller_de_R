@@ -45,6 +45,7 @@ install.packages('nombre_del_paquete')
 * Usar el gestor de paquetes (pestaña _Packages -> Install_)
 
 ![](imgs/instalar_paquete.png)
+
 Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
 
 ```{r}
@@ -92,6 +93,22 @@ Multiplicación | *
 División | /
 Exponente | ^
 Módulo | %%
+
+Por ejemplo:
+
+```{r}
+1+2
+```
+
+O usando variables:
+
+```{r}
+edad_Nathan <- 6
+edad_Fausto <- 5
+edad_Kimi <- 1
+edad_gatos <- edad_Nathan + edad_Fausto + edad_Kimi
+edad_gatos
+```
 
 ## Tipos de datos
 
