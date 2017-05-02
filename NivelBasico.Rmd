@@ -11,7 +11,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Tutorial básico sobre R
 
+Al terminar este tutorial tendrás unas nociones básicas de R y podrás:
+
+* Instalar paquetes nuevos en R
+* Crear un script de R
+* Hacer operaciones básicas
+* Utilizar distintos tipos de datos simples
+* Crear vectores y vectores-factores
+* Conocer los dataframes de R
+
 ## R Studio
+
+En este taller utilizaremos R Studio. Consulta el [README](https://github.com/geekandtechgirls/Taller_de_R/blob/master/README.md) para saber más sobre cómo instalarlo. La interfaz de R Studio es así:
+
+[](imgs/interfaz_R_studio.png)
+
+Como ves, puedes ir escribiendo los comandos directamente en la línea de comandos, pero también puedes hacer un _script_ (un archivo con varios comandos juntos). Para ello nos vamos arriba a la izquierda: [](imgs/new_file.png).
+
+Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_ o _R markdown_, como los tutoriales del taller.    
 
 ## Aritmética con R
 
