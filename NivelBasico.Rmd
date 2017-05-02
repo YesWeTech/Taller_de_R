@@ -31,4 +31,51 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Vectores y factores
 
+### Declaración de un vector
+
+En _R_, podemos decir que todo elemento que hagamos, será un vector o _array_, con una longitud determinada, en la que almacenaramos información. Esta información que almacenamos pueden ser datos de tipo _int_, _char_, etc.  Un vector lo crearemos con la función _combine_ `c()` . En esta función introduciremos los datos que queremos almacenar en nuestro array uno detrás de otro, separados por una coma.
+
+```{r}
+dado <- c(1, 2, 3, 4, 5, 6)
+letras <- c("a", "b", "c", "d", "e", "f")
+```
+
+#### Ejercicio
+
+Este año has tenido la suerte de que te has ido a las Vegas y has decidido jugar y apostar en el poker y la ruleta. Durante estos cinco  días que llevas de vacaciones tus ingresos y pérdidas han sido:
+
+* Lunes: has ganado 150$.
+* Martes: has ganado 5$.
+* Miércoles: has perdido 75$.
+* Jueves: has perdido 128$ (vaya racha).
+* Viernes: has ganado 15$.
+
+Y en el caso de la ruleta:
+
+* Lunes: has perdido 35$.
+* Martes: has ganado 40$.
+* Miércoles: has perdido 165$.
+* Jueves: has ganado 12$ (vaya racha).
+* Viernes: has ganado 178$.
+
+Como tu futuro económico parece incierto, has decido usar tus recientemente adquiridas capacidades en R para analizar estos datos y usar tus habilidades estadísticas para decidir si apostar o no en el futuro. Para ello, empieza introduciendo estos datos en  dos vectores.
+
+```{r}
+
+```
+
+### Asignar nombres a un vector
+
+Además de crear un vector con datos, en muchos casos, como es en la ciencia de datos, es importante saber qué es cada dato o qué representan los datos de un vector. Esto es muy fácil y cómodo de hacer con la función `names()`. Esta función recibe como argumento nuestro recién y estrenado array y se le asigna un nuevo array que contiene los nombres que queremos asignarle a nuestros datos almacenados. Un ejemplo es el siguiente:
+
+```{r}
+un_plato <- c("Magdalenas", "Dulce")
+elementos <- c("SSD", "Nuevo")
+
+names(un_plato) <- c("Nombre", "Tipo")
+names(otro_plato) <- c("Elemento", "Estado")
+```
+
+
+
 ## Dataframes
