@@ -32,6 +32,22 @@ Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_
 
 Para ejecutar las líneas del _script_ podemos usar _Run_ o hacer _Ctrl+Intro_.
 
+### Instalando paquetes nuevos
+
+Para instalar paquetes nuevos en R, tenemos dos opciones: 
+
+* Usar el comando
+```{r}
+install.packages('nombre_del_paquete')
+```
+* Usar el gestor de paquetes (pestaña _Packages -> Install_)
+![](imgs/instalar_paquetes.png)
+Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
+
+```{r}
+require(nombre_del_paquete)
+```
+
 ## Aritmética con R
 
 ### Asignación de variables
