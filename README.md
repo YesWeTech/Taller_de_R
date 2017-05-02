@@ -29,3 +29,5 @@ Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rst
 ## Más recursos y material
 
 * [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r)
+
+* [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets)
