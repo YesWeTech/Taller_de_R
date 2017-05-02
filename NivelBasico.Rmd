@@ -21,13 +21,34 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Tipos de datos
 
-### Numeric
+Al igual que todos los lenguajes de programación, _R_ trabaja los tipos de datos básicos:
 
-### Character
+* __Numeric__: números decimales.
+* __Integer__: números enteros. Para diferenciarlos de los numeric, se coloca una `L` al final de número.
+* __Logical__: valores booleanos. En _R_, los valores booleanos son `TRUE` y `FALSE` aunque también se acepta `T` y `F`.
+* __Character__: texto (_string_).
 
-### Dates
+Para saber el tipo de una variable, se usa la función `class`:
 
-### Logical
+```{r}
+class(5.6)
+class(5L)
+class(T)
+class(TRUE)
+class("TRUE")
+```
+
+### Ejercicio
+__Prueba a declarar una variable con un número decimal, pero poniéndole la `L` que se pone al declarar números enteros ¿qué pasa?__
+
+```{r}
+```
+
+### Ejercicio
+__Declara un entero sin la `L` al final y comprueba su tipo, ¿qué tipo de variable es?__
+
+```{r}
+```
 
 ## Vectores y factores
 
