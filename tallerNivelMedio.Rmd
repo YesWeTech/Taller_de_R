@@ -1,0 +1,20 @@
+# Taller Nivel medio
+
+
+```{r}
+# En primer lugar simulamos el dataset:
+
+dataset<-NULL
+for(i in 1:200){
+    dataset<-cbind(dataset,rnorm(10000,i))
+}
+
+# lo hacemos funcional
+dataset<-NULL
+
+dataset<-sapply(1:200, function(i){
+  dataset<-cbind(dataset,rnorm(10000,i))
+})
+
+```
+
