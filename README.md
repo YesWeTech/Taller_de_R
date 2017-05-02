@@ -37,3 +37,5 @@ Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rst
 * [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets)
 
 * [Chuleta Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+* [Haciendo cosas con la api de github desde R](https://elbauldelprogramador.com/githubmininglanguages/)
