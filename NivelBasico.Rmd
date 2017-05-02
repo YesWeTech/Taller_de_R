@@ -24,11 +24,13 @@ Al terminar este tutorial tendrás unas nociones básicas de R y podrás:
 
 En este taller utilizaremos R Studio. Consulta el [README](https://github.com/geekandtechgirls/Taller_de_R/blob/master/README.md) para saber más sobre cómo instalarlo. La interfaz de R Studio es así:
 
-[](imgs/interfaz_R_studio.png)
+![](imgs/interfaz_R_studio.png)
 
-Como ves, puedes ir escribiendo los comandos directamente en la línea de comandos, pero también puedes hacer un _script_ (un archivo con varios comandos juntos). Para ello nos vamos arriba a la izquierda: [](imgs/new_file.png).
+Como ves, puedes ir escribiendo los comandos directamente en la línea de comandos, pero también puedes hacer un _script_ (un archivo con varios comandos juntos). Para ello nos vamos arriba a la izquierda: ![](imgs/new_file.png).
 
-Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_ o _R markdown_, como los tutoriales del taller.    
+Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_ o _R markdown_, como los tutoriales del taller.
+
+Para ejecutar las líneas del _script_ podemos usar _Run_ o hacer _Ctrl+Intro_.
 
 ## Aritmética con R
 
