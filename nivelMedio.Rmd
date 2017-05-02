@@ -1,0 +1,12 @@
+# Nivel basico:
+*Tutorial (aritmética, asignación variables)
+* Intro a diferentes clases de variable: dataframe, factors... 
+
+# Nivel medio:
+* Programación funcional
+* Programación paralela
+* Introducción a caret (particionado de datos)
+* ggplot2 : explicar gráficos más comunes: hibstrogramas, boxplots, gráficas... y mencionar shiny
+
+# Nivel Avanzado:
+Enfrentarse a dataset de kaggle (titanic)
