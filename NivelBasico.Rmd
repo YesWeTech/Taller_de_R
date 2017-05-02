@@ -188,6 +188,10 @@ names(un_plato) <- c("Nombre", "Tipo")
 names(otro_plato) <- c("Elemento", "Estado")
 ```
 
+#### Ejercicio
+
+Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente.
+
 
 
 ## Dataframes
