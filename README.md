@@ -1,5 +1,9 @@
 # Taller_de_R
-Contenidos del taller de R de Geek &amp; Tech Girls
+Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
+
+* Para apuntarte como alumna, apúntate en [este enlace](https://goo.gl/DtbwvW)
+
+* Para apuntarte como profesora, apúntate en [este otro](https://goo.gl/g2ihgj)
 
 ## Instalando Rstudio
 Para llevar a cabo el taller, usaremos _Rstudio_, un IDE de R que permite trabajar con _Rmarkdown_. 
@@ -26,3 +30,12 @@ Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rst
 3. Copiamos la URL del repositorio
 4. Confirmamos.
 
+## Más recursos y material
+
+* [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r)
+
+* [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets)
+
+* [Chuleta Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+* [Haciendo cosas con la api de github desde R](https://elbauldelprogramador.com/githubmininglanguages/)

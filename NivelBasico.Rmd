@@ -11,23 +11,135 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Tutorial básico sobre R
 
+Al terminar este tutorial tendrás unas nociones básicas de R y podrás:
+
+* Instalar paquetes nuevos en R
+* Crear un script de R
+* Hacer operaciones básicas
+* Utilizar distintos tipos de datos simples
+* Crear vectores y vectores-factores
+* Conocer los dataframes de R
+
 ## R Studio
+
+En este taller utilizaremos R Studio. Consulta el [README](https://github.com/geekandtechgirls/Taller_de_R/blob/master/README.md) para saber más sobre cómo instalarlo. La interfaz de R Studio es así:
+
+![](imgs/interfaz_R_studio.png)
+
+Como ves, puedes ir escribiendo los comandos directamente en la línea de comandos, pero también puedes hacer un _script_ (un archivo con varios comandos juntos). Para ello nos vamos arriba a la izquierda: ![](imgs/new_file.png).
+
+Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_ o _R markdown_, como los tutoriales del taller.
+
+Para ejecutar las líneas del _script_ podemos usar _Run_ o hacer _Ctrl+Intro_.
+
+Para añadir comentarios, utiliza la almohadilla: #.
+
+### Instalando paquetes nuevos
+
+Para instalar paquetes nuevos en R, tenemos dos opciones: 
+
+* Usar el comando
+```{r}
+install.packages('nombre_del_paquete')
+```
+* Usar el gestor de paquetes (pestaña _Packages -> Install_)
+
+![](imgs/instalar_paquete.png)
+
+Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
+
+```{r}
+require(nombre_del_paquete)
+```
+
+### Ejercicio
+__Instala el paquete 'ggplot2', muy útil para visualizar datos y hacer gráficas de todo tipo.__
+
+```{r}
+```
 
 ## Aritmética con R
 
+Antes de operar sobre grandes cantidades de datos o usar estructuras de datos complejas, es bueno que nos familiaricemos más con la interfaz de R.
+
 ### Asignación de variables
+
+En R podemos trabajar directamente con los datos o guardarlos en variables, para así poder tenerlos disponibles en todo momento y trabajar con ellos. El operador de asignación es __<-__. Por ejemplo:
+
+```{r}
+x <- 10
+```
+
+Si nos fijamos a la derecha, nos aparece la variable creada:
+![](imgs/var_x.png)
+
+Y para visualizar variables, lo único que tenemos que hacer es _llamarlas_:
+
+```{r}
+x
+```
+
+Así, podemos ponerle nombre a cualquier operación, además de a funciones. Ten siempre en cuenta que debes usar nombres de variables adecuados para que tu código siempre sea legible. 
 
 ### Operadores
 
+Los operadores numéricos básicos de R son:
+
+Operador | Símbolo
+-------- | -------
+Suma     | +
+Resta    | - 
+Multiplicación | *
+División | /
+Exponente | ^
+Módulo | %%
+
+Por ejemplo:
+
+```{r}
+1+2
+```
+
+O usando variables:
+
+```{r}
+edad_Nathan <- 6
+edad_Fausto <- 5
+edad_Kimi <- 1
+edad_gatos <- edad_Nathan + edad_Fausto + edad_Kimi
+edad_gatos
+```
+
 ## Tipos de datos
 
-### Numeric
+Al igual que todos los lenguajes de programación, _R_ trabaja los tipos de datos básicos:
 
-### Character
+* __Numeric__: números decimales.
+* __Integer__: números enteros. Para diferenciarlos de los numeric, se coloca una `L` al final de número.
+* __Logical__: valores booleanos. En _R_, los valores booleanos son `TRUE` y `FALSE` aunque también se acepta `T` y `F`.
+* __Character__: texto (_string_).
 
-### Dates
+Para saber el tipo de una variable, se usa la función `class`:
 
-### Logical
+```{r}
+class(5.6)
+class(5L)
+class(T)
+class(TRUE)
+class("TRUE")
+```
+
+### Ejercicio
+__Prueba a declarar una variable con un número decimal, pero poniéndole la `L` que se pone al declarar números enteros ¿qué pasa?__
+
+```{r}
+```
+
+### Ejercicio
+__Declara un entero sin la `L` al final y comprueba su tipo, ¿qué tipo de variable es?__
+
+```{r}
+```
 
 ## Vectores y factores
 
