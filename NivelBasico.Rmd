@@ -9,6 +9,26 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Tutorial Básico sobre R
+# Tutorial básico sobre R
 
+## R Studio
 
+## Aritmética con R
+
+### Asignación de variables
+
+### Operadores
+
+## Tipos de datos
+
+### Numeric
+
+### Character
+
+### Dates
+
+### Logical
+
+## Vectores y factores
+
+## Dataframes
