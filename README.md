@@ -1,5 +1,9 @@
 # Taller_de_R
-Contenidos del taller de R de Geek &amp; Tech Girls
+Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
+
+* Para apuntarte como alumna, apúntate en [este enlace](https://goo.gl/DtbwvW)
+
+* Para apuntarte como profesora, apúntate en [este otro](https://goo.gl/g2ihgj)
 
 ## Instalando Rstudio
 Para llevar a cabo el taller, usaremos _Rstudio_, un IDE de R que permite trabajar con _Rmarkdown_. 
