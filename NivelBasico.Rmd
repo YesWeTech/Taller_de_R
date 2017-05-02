@@ -48,11 +48,38 @@ Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la s
 require(nombre_del_paquete)
 ```
 
+### Ejercicio
+__Instala el paquete 'ggplot2', muy útil para visualizar datos y hacer gráficas de todo tipo.__
+
+```{r}
+```
+
 ## Aritmética con R
+
+Antes de operar sobre grandes cantidades de datos o usar estructuras de datos complejas, es bueno que nos familiaricemos más con la interfaz de R.
 
 ### Asignación de variables
 
+En R podemos trabajar directamente con los datos o guardarlos en variables, para así poder tenerlos disponibles en todo momento y trabajar con ellos. El operador de asignación es __<-__. Por ejemplo:
+
+```{r}
+x <- 10
+```
+
+Si nos fijamos a la derecha, nos aparece la variable creada:
+![](imgs/var_x.png)
+
+Y para visualizar variables, lo único que tenemos que hacer es _llamarlas_:
+
+```{r}
+x
+```
+
+Así, podemos ponerle nombre a cualquier operación, además de a funciones. Ten siempre en cuenta que debes usar nombres de variables adecuados para que tu código siempre sea legible. 
+
 ### Operadores
+
+
 
 ## Tipos de datos
 
