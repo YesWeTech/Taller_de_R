@@ -32,14 +32,11 @@ Es importante que instalemos y carguemos las librerías siguientes antes de empe
 `ggplot2, reshape2, caret`:
 
 ```{r}
-install.packages("ggplot2")
-library(ggplot2)
+require(ggplot2)
 
-install.packages("reshape2")
-library(reshape2)
+require(reshape2)
 
-install.packages("caret")
-library(caret)
+require(caret)
 ```
 
 ## Importar los Datasets a R
@@ -109,6 +106,12 @@ ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
 
 **Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
 **Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
+**Ejercicio 5:** ¿Si tuvieras que elegir una variable para explicar la clase (``Survived``), cuál eligirías? (*Pista:* [El mito de los naufrágeos](http://www.bbc.com/mundo/noticias/2012/04/120413_mujeres_ninos_primero_mito_adz.shtml)
+
+
+## Primer modelo
+
+Según la variable que hayamos elegido en el **Ejercicio 5**, construiremos el primer modelo. 
 
 
 ## Imputación de valores perdidos
