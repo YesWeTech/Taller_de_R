@@ -91,7 +91,7 @@ summary(gender_submission)
 
 Siempre es aconsejable acompañar las medidas estadísticas con alguna gráfica para hacernos una idea general del comportamiendo de los datos. La librería que utilizaremos es `ggplot2`, capaz de realizar gráficos excelentes (si sabemos cómo manejarla...). En este caso, vamos a realizar un histograma de train:
 
-````
+```{}
 # Guardar las variables como factors
 dataPlot <- train
 nameVar <- c("Pclass", "Sex", "SibSp", "Parch", "Embarked", "Survived") 
