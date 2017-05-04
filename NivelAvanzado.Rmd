@@ -73,7 +73,7 @@ lapply(test, class)
 lapply(gender_submission, class)
 ```
 
-**Ejercicio 1:** ¿Existe alguna variable que sea `character`? ¿Crees que se debería de cambiar la clase de alguna de las variables?
+- **Ejercicio 1:** ¿Existe alguna variable que sea `character`? ¿Crees que se debería de cambiar la clase de alguna de las variables?
 
 La función `summary` devuelve un resumen por cada variable:
 
@@ -83,7 +83,7 @@ summary(test)
 summary(gender_submission)
 ```
 
-**Ejercicio 2:** ¿Cuál es la media de la variable `Survived`? ¿Y la mediana? ¿Qué relación existe entre estas dos medidas estadísticas?
+- **Ejercicio 2:** ¿Cuál es la media de la variable `Survived`? ¿Y la mediana? ¿Qué relación existe entre estas dos medidas estadísticas?
 
 ## Algunas gráficas
 
@@ -104,14 +104,29 @@ ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
   ggtitle("Histograma") + theme(plot.title = element_text(lineheight=.8, face="bold")) 
 ```
 
-**Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
-**Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
-**Ejercicio 5:** ¿Si tuvieras que elegir una variable para explicar la clase (``Survived``), cuál eligirías? (*Pista:* [El mito de los naufrágeos](http://www.bbc.com/mundo/noticias/2012/04/120413_mujeres_ninos_primero_mito_adz.shtml)
+- **Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
+- **Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
+- **Ejercicio 5:** ¿Si tuvieras que elegir una variable para explicar la clase (``Survived``), cuál eligirías? (*Pista:* [El mito de los naufrágeos](http://www.bbc.com/mundo/noticias/2012/04/120413_mujeres_ninos_primero_mito_adz.shtml))
 
 
 ## Primer modelo
 
-Según la variable que hayamos elegido en el **Ejercicio 5**, construiremos el primer modelo. 
+Según la variable que hayamos elegido en el **Ejercicio 5**, construiremos el primer modelo. Por ejemplo, observamos que la variable ``Sex`` muestra un comportamiento muy diferente en la superviviencia según si es ``Female`` o ``Male``:
+
+```{r}
+table(train$Sex, train$Survived)
+prop.table(table(train$Sex, train$Survived))
+```
+Como observamos, perecieron muchos más hombres (52.52 %) que mujeres (0.09 %). Por lo tanto, vamos a crear nuestro primer modelo bajo la hipótesis que si eres mujer sobrevives y si eres hombre mueres:
+
+```{r}
+test$Survived <- ifelse(test$Sex == "female", 1, 0)
+
+GenderModel <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
+write.csv(GenderModel, file = "GenderModel.csv", row.names = FALSE)
+```
+
+- **Ejercicio 6:** ¿Que puntuación has obtenido?
 
 
 ## Imputación de valores perdidos
