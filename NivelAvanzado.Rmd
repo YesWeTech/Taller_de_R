@@ -33,7 +33,7 @@ Los archivos los guardaremos en una carpeta que llamaremos **data**.
 Es importante que instales y cargues las librerías siguientes antes de empezar el tutorial:
 `ggplot2, caret`:
 
-```{}
+```{r}
 install.packages("ggplot2")
 library(ggplot2)
 
@@ -45,13 +45,13 @@ library(caret)
 
 Primero vamos a configurar nuestro espacio de trabajo. Para ello, vamos a decirle a R en qué carpeta vamos a trabajar:
 
-```{}
+```{r}
 setwd("C:/Users/Ana/Dropbox (Personal)/AlhambraAnalytics/TallerR/")
 ```
 
 Leemos los datasets:
 
-```{}
+```{r}
 train <- read.csv("./data/train.csv")
 test <- read.csv("./data/test.csv")
 gender_submission <- read.csv("./data/gender_submission.csv")
@@ -61,7 +61,7 @@ gender_submission <- read.csv("./data/gender_submission.csv")
 
 La función `str` nos devuelve la estructura del dataset. Nos informa de cuántas observaciones y variables contiene el dataset. Además, también nos devuelve de las clases de las variables:
 
-```{}
+```{r}
 str(train)
 str(test)
 str(gender_submission)
@@ -69,7 +69,7 @@ str(gender_submission)
 
 No obstante, si sólo queremos obtener información de la clase podemos ejecutar la siguiente orden:
 
-```{}
+```{r}
 lapply(train, class)
 lapply(test, class)
 lapply(gender_submission, class)
@@ -79,7 +79,7 @@ lapply(gender_submission, class)
 
 La función `summary` devuelve un resumen por cada variable:
 
-```{}
+```{r}
 summary(train)
 summary(test)
 summary(gender_submission)
@@ -91,7 +91,7 @@ summary(gender_submission)
 
 Siempre es aconsejable acompañar las medidas estadísticas con alguna gráfica para hacernos una idea general del comportamiendo de los datos. La librería que utilizaremos es `ggplot2`, capaz de realizar gráficos excelentes (si sabemos cómo manejarla...). En este caso, vamos a realizar un histograma de train:
 
-```{}
+```{r}
 # Guardar las variables como factors
 dataPlot <- train
 nameVar <- c("Pclass", "Sex", "SibSp", "Parch", "Embarked", "Survived") 
