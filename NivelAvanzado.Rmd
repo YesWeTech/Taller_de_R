@@ -2,7 +2,9 @@
 title: "NivelAvanzado"
 author: '@ana_valdi'
 date: "2 de mayo de 2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -26,20 +28,88 @@ El primer paso que debemos realizar es la descarga de datos. Para ellos, iremos 
 
 Los archivos los guardaremos en una carpeta que llamaremos **data**.
 
+## Librerías que vamos a utilizar
+
+Es importante que instales y cargues las librerías siguientes antes de empezar el tutorial:
+`ggplot2, caret`:
+
+```{}
+install.packages("ggplot2")
+library(ggplot2)
+
+install.packages("caret")
+library(caret)
+```
+
 ## Importar los Datasets a R
 
-Primero vamos a configurar nuestro espacio de trabajo. Para ello, vamos a decirle a R en qué carpeta vamos a trabajar
+Primero vamos a configurar nuestro espacio de trabajo. Para ello, vamos a decirle a R en qué carpeta vamos a trabajar:
 
 ```{}
 setwd("C:/Users/Ana/Dropbox (Personal)/AlhambraAnalytics/TallerR/")
 ```
 
-## Including Plots
+Leemos los datasets:
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{}
+train <- read.csv("./data/train.csv")
+test <- read.csv("./data/test.csv")
+gender_submission <- read.csv("./data/gender_submission.csv")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Analizar la Estructura de los Datasets
+
+La función `str` nos devuelve la estructura del dataset. Nos informa de cuántas observaciones y variables contiene el dataset. Además, también nos devuelve de las clases de las variables:
+
+```{}
+str(train)
+str(test)
+str(gender_submission)
+```
+
+No obstante, si sólo queremos obtener información de la clase podemos ejecutar la siguiente orden:
+
+```{}
+lapply(train, class)
+lapply(test, class)
+lapply(gender_submission, class)
+```
+
+**Ejercicio 1:** ¿Existe alguna variable que sea `character`? ¿Crees que se debería de cambiar la clase de alguna de las variables?
+
+La función `summary` devuelve un resumen por cada variable:
+
+```{}
+summary(train)
+summary(test)
+summary(gender_submission)
+```
+
+**Ejercicio 2:** ¿Cuál es la media de la variable `Survived`? ¿Y la mediana? ¿Qué relación existe entre estas dos medidas estadísticas?
+
+## Algunas gráficas
+
+Siempre es aconsejable acompañar las medidas estadísticas con alguna gráfica para hacernos una idea general del comportamiendo de los datos. La librería que utilizaremos es `ggplot2`, capaz de realizar gráficos excelentes (si sabemos cómo manejarla...). En este caso, vamos a realizar un histograma de train:
+
+````
+# Guardar las variables como factors
+dataPlot <- train
+nameVar <- c("Pclass", "Sex", "SibSp", "Parch", "Embarked", "Survived") 
+dataPlot <- dataPlot[ ,nameVar]
+dataPlot[ ,nameVar] <- lapply(dataPlot[,nameVar], as.factor)
+
+# Histograma de las variables seleccionadas
+meltData <- as.data.frame(melt(dataPlot, id.vars="Survived"))
+
+ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
+  geom_bar(aes(fill=Survived)) + scale_fill_manual(values=c("coral2", "cyan3")) + 
+  ggtitle("Histograma") + theme(plot.title = element_text(lineheight=.8, face="bold")) 
+```
+
+**Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
+**Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
+
+
+## Imputación de valores perdidos
+
+Antes de construir un modelo de Machine Learning, debemos de 
