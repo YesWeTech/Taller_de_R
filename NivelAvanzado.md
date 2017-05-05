@@ -8,11 +8,13 @@ Tutorial para Nivel Avanzado de R
 
 En este tutorial vamos a aprender como enfrentarnos a una competición de **Kaggle**. Utilizaremos nuestros conocimientos en R y Machine Learning.
 
-La competición que hemos elegido es **Titanic: Machine Learning from Disaster**: <https://www.kaggle.com/c/titanic>.
+La competición que hemos elegido es **Titanic: Machine Learning from Disaster** <https://www.kaggle.com/c/titanic>.
 
 Titanic fue un transatlántico que naufragó la noche del 14 de abril de 1912 al chocar contra un iceberg. Este hecho provocó la muerte de 1.515 personas (de un total de 2.224). Debido a las consecuencias de esta tragedia, el naufragió del Titanic se ha convertido en un de los más famosos de la historia.
 
-El objetivo de esta competición es el de predecir qué personas sobrevivieron.
+El objetivo de esta competición es el de predecir qué personas sobrevivieron (jugaremos a ser Dioses).
+
+![Hundimiento del Titanic.](C:\Users\Ana\Dropbox%20(Personal)\AlhambraAnalytics\TallerR\titanic.jpg)
 
 Descargar los Datasets
 ----------------------
@@ -320,18 +322,13 @@ dataPlot[ ,nameVar] <- lapply(dataPlot[,nameVar], as.factor)
 
 # Histograma de las variables seleccionadas
 meltData <- as.data.frame(melt(dataPlot, id.vars="Survived"))
-```
 
-    ## Warning: attributes are not identical across measure variables; they will
-    ## be dropped
-
-``` r
 ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
   geom_bar(aes(fill=Survived)) + scale_fill_manual(values=c("coral2", "cyan3")) + 
   ggtitle("Histograma") + theme(plot.title = element_text(lineheight=.8, face="bold")) 
 ```
 
-![](NivelAvanzado_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![Histograma.](C:\Users\Ana\Dropbox%20(Personal)\AlhambraAnalytics\TallerR\histo.jpg)
 
 -   **Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
 -   **Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
