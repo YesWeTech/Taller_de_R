@@ -26,7 +26,7 @@ El primer paso que debemos realizar es la descarga de datos. Para ellos, iremos 
 
 Los archivos los guardaremos en una carpeta que llamaremos **data**.
 
-## Librerías que vamos a utilizar
+## Librerías que Vamos a Utilizar
 
 Es importante que instalemos y carguemos las librerías siguientes antes de empezar el tutorial:
 `ggplot2, reshape2, caret`:
@@ -85,7 +85,7 @@ summary(gender_submission)
 
 - **Ejercicio 2:** ¿Cuál es la media de la variable `Survived`? ¿Y la mediana? ¿Qué relación existe entre estas dos medidas estadísticas?
 
-## Algunas gráficas
+## Algunas Gráficas
 
 Siempre es aconsejable acompañar las medidas estadísticas con alguna gráfica para hacernos una idea general del comportamiendo de los datos. La librería que utilizaremos es `ggplot2`, capaz de realizar gráficos excelentes (si sabemos cómo manejarla...). En este caso, vamos a realizar un histograma de train:
 
@@ -109,7 +109,7 @@ ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
 - **Ejercicio 5:** ¿Si tuvieras que elegir una variable para explicar la clase (``Survived``), cuál eligirías? (*Pista:* [El mito de los naufrágeos](http://www.bbc.com/mundo/noticias/2012/04/120413_mujeres_ninos_primero_mito_adz.shtml))
 
 
-## Primer modelo
+## Primer Modelo
 
 Según la variable que hayamos elegido en el **Ejercicio 5**, construiremos el primer modelo. Por ejemplo, observamos que la variable ``Sex`` muestra un comportamiento muy diferente en la superviviencia según si es ``Female`` o ``Male``:
 
@@ -126,9 +126,9 @@ GenderModel <- data.frame(PassengerId = test$PassengerId, Survived = test$Surviv
 write.csv(GenderModel, file = "GenderModel.csv", row.names = FALSE)
 ```
 
-- **Ejercicio 6:** ¿Que puntuación has obtenido?
+- **Ejercicio 6:** ¿Qué puntuación has obtenido?
 
 
-## Imputación de valores perdidos
+## Imputación de Valores Perdidos
 
 Antes de construir un modelo de Machine Learning, debemos de 
