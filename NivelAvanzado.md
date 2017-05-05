@@ -206,6 +206,8 @@ lapply(gender_submission, class)
     ## $Survived
     ## [1] "integer"
 
+Es importante que en este paso entendamos qué información nos aporta cada una de las variables ([Data Dictionary](https://www.kaggle.com/c/titanic/data)).
+
 -   **Ejercicio 1:** ¿Existe alguna variable que sea `character`? ¿Crees que se debería de cambiar la clase de alguna de las variables?
 
 La función `summary` devuelve un resumen por cada variable:
@@ -298,6 +300,12 @@ summary(gender_submission)
 
 -   **Ejercicio 2:** ¿Cuál es la media de la variable `Survived`? ¿Y la mediana? ¿Qué relación existe entre estas dos medidas estadísticas?
 
+Realmente esta variable no es del tipo numérica, debemos cambiar su clase:
+
+``` r
+train$Survived <- as.factor(train$Survived)
+```
+
 Algunas Gráficas
 ----------------
 
@@ -323,7 +331,7 @@ ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
   ggtitle("Histograma") + theme(plot.title = element_text(lineheight=.8, face="bold")) 
 ```
 
-![](NivelAvanzado_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](NivelAvanzado_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 -   **Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
 -   **Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
@@ -357,13 +365,177 @@ Como observamos, perecieron muchos más hombres (52.52 %) que mujeres (0.09 %). 
 ``` r
 test$Survived <- ifelse(test$Sex == "female", 1, 0)
 
+# Generamos el output para subir a Kaggle
 GenderModel <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
 write.csv(GenderModel, file = "GenderModel.csv", row.names = FALSE)
 ```
 
 -   **Ejercicio 6:** ¿Qué puntuación has obtenido?
 
+Creación de nuevas variables
+----------------------------
+
+Uno de los pasos más creativos del Data Analytics es la creación de nuevas variables. Para ello, es recomendable que hayamos entendido el problema, el dataset y tengamos cierta intuición de la realidad para crear nuevas variables que puedan aportar más precisión al modelo. Por ejemplo, si tenemos que predecir el nivel de CO2 que hay en la atmósfera de Granada es lógico pensar en variables como: número de coches de la ciudad, temperatura, presión atmosférica, número de industrias que emiten gases, número de zonas verdes de la ciudad, etc.
+
+En nuestro caso, debemos ponernos en el lugar de un o una pasajero/a:
+
+-   Las personas que pertenecen a clases altas siempre tienen más oportunidades (lamentablemente esto es así). ¿Cómo puedo obtener el nivel socioeconómico de los y las pasajeros/as?
+
+-   Si subí al Titanic con mi pareja, y ésta no puede salvarse, ¿qué probabilidad hay que yo decida quedarme a su lado?.
+
+-   Si embarqué en el Titanic con un grupo de personas y la mayoría de ese grupo se sabe que sobrevivieron, ¿yo también?
+
+-   ...
+
+-   **Ejercicio 7**: Oda a la creatividad, ¿qué otras circunstancias se te ocurren que podamos explicar con variables?
+
+Vamos a crear una variable que nos resuelva la primera pregunta. Nos fijamos que en la variable `Name` aparece el título de la persona (Mr, Miss, etc.). Ésta observación nos puede aportar mucha información sobre el nivel socioeconómico de la persona.
+
+``` r
+train$Title <- as.factor(sapply(as.character(train$Name), FUN=function(x) {strsplit(x, split='[,.]')[[1]][2]}))
+test$Title <- as.factor(sapply(as.character(test$Name), FUN=function(x) {strsplit(x, split='[,.]')[[1]][2]}))
+```
+
+-   **Ejercicio 8**: ¿Qué hace la función `strsplit`? ¿Qué significa '\[,.\]'?
+
+Vamos a estudiar qué tipo de títulos nos han aparecido:
+
+``` r
+table(train$Title)
+```
+
+    ## 
+    ##          Capt           Col           Don            Dr      Jonkheer 
+    ##             1             2             1             7             1 
+    ##          Lady         Major        Master          Miss          Mlle 
+    ##             1             2            40           182             2 
+    ##           Mme            Mr           Mrs            Ms           Rev 
+    ##             1           517           125             1             6 
+    ##           Sir  the Countess 
+    ##             1             1
+
+``` r
+table(test$Title)
+```
+
+    ## 
+    ##     Col    Dona      Dr  Master    Miss      Mr     Mrs      Ms     Rev 
+    ##       2       1       1      21      78     240      72       1       2
+
+Pero... Espera un momento:
+
+``` r
+levels(train$Title)
+```
+
+    ##  [1] " Capt"         " Col"          " Don"          " Dr"          
+    ##  [5] " Jonkheer"     " Lady"         " Major"        " Master"      
+    ##  [9] " Miss"         " Mlle"         " Mme"          " Mr"          
+    ## [13] " Mrs"          " Ms"           " Rev"          " Sir"         
+    ## [17] " the Countess"
+
+``` r
+levels(test$Title)
+```
+
+    ## [1] " Col"    " Dona"   " Dr"     " Master" " Miss"   " Mr"     " Mrs"   
+    ## [8] " Ms"     " Rev"
+
+Debemos eliminar esos espacios que se han colado en el Título:
+
+``` r
+train$Title <- sub(' ', '', train$Title)
+test <- sub(' ', '', test$Title)
+```
+
+Es aconsejable unificar títulos que no sean muy numerosos, ya que éstos no aportaran información al modelo.
+
+``` r
+train$Title <- as.character(train$Title)
+
+train$Title[train$Title %in% c('Don', 'Major', 'Capt', 'Jonkheer', 'Rev', 'Col')] <- 'Mr'
+train$Title[train$Title %in% c('Countess', 'Mme', 'Dona')] <- 'Mrs'
+train$Title[train$Title %in% c('Ms', 'Mlle')] <- 'Miss'
+
+train$Title <- ifelse((grepl("Dr", train$Name)) & (train$Sex=="Male"), "Mr", train$Title)
+train$Title <- ifelse((grepl("Dr", train$Name)) & (train$Sex=="Female"), "Mrs", train$Title)
+
+train$Title <- as.factor(train$Title)
+
+levels(train$Title)
+```
+
+-   **Ejercicio 9**: Haz lo mismo para test.
+-   **Ejercicio 10**: ¿Qué realiza la función `ifelse`? ¿Y `grepl`?
+
+Segundo Modelo
+--------------
+
+Una vez hemos creado nuevas variables, vamos a proceder a construir nuestro modelo. El paquete por excelencia para crear modelos de Machine Learning en R es `caret`: <https://topepo.github.io/caret>. Este paquete contiene funciones de preprocesamiento, partición de datos, construcción de modelos, evaluación, etc.
+
+Vamos a construir nuestro modelo mediante un 10cv, con el algoritmo [RandomForest](https://en.wikipedia.org/wiki/Random_forest). Este algoritmo crea varios árboles de decisión utilizando diferentes particiones de los datos y variables. Predice los nuevos datos utilizando el voto mayoritario de los diferentes árboles.
+
+``` r
+# Estabelecemos las variables de control
+fitControl <- trainControl(## 5-fold CV
+                           method = "cv",
+                           number = 5)
+# Definimos una semilla para poder repetir el experimento y obtener los mismos resultados
+set.seed(825)
+
+# Elegimos las variables para el modelo
+Model_2 <- train(Survived ~ Pclass + Sex + Title, data = train, 
+                 method = "rf", 
+                 trControl = fitControl)
+summary(Model_2)
+
+# Obtenemos predicciones
+predict(Model_2, test)
+```
+
+-   **Ejercicio 11**: Guarda las predicciones y sube el modelo. ¿Qué resultado has obtenido ahora? ¿Ha mejorado?
+
 Imputación de Valores Perdidos
 ------------------------------
 
-Antes de construir un modelo de Machine Learning, debemos de
+Otra de las tareas importantes para obtener un buen modelo es el preprocesamiento. Como hemos observado (o no), en nuestra base de datos tenemos valores perdidos, como por ejemplo en la variable `Age`:
+
+``` r
+summary(train$Age)
+```
+
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    ##    0.42   20.12   28.00   29.70   38.00   80.00     177
+
+Una de las estrategias que se sigue para imputar valores perdidos es el de sustituir esos valores por la media. En este caso, vamos a seguir esa estrategia pero afinando un poco más:
+
+``` r
+# Calculamos la media de la Edad por Título e imputamos
+
+train$Age <- ifelse((is.na(train$Age)) & (train$Title=="Mr"), mean(train$Age[train$Title=="Mr"], na.rm=TRUE), train$Age)
+train$Age <- ifelse((is.na(train$Age)) & (train$Title=="Miss"), mean(train$Age[train$Title=="Miss"], na.rm=TRUE), train$Age)
+train$Age <- ifelse((is.na(train$Age)) & (train$Title=="Master"), mean(train$Age[train$Title=="Master"], na.rm=TRUE), train$Age)
+train$Age <- ifelse((is.na(train$Age)) & (train$Title=="Mrs"), mean(train$Age[train$Title=="Mrs"], na.rm=TRUE), train$Age)
+
+test$Age <- ifelse((is.na(test$Age)) & (test$Title=="Mr"), mean(test$Age[test$Title=="Mr"], na.rm=TRUE), test$Age)
+test$Age <- ifelse((is.na(test$Age)) & (test$Title=="Miss"), mean(test$Age[test$Title=="Miss"], na.rm=TRUE), test$Age)
+test$Age <- ifelse((is.na(test$Age)) & (test$Title=="Master"), mean(test$Age[test$Title=="Master"], na.rm=TRUE), test$Age)
+test$Age <- ifelse((is.na(test$Age)) & (test$Title=="Mrs"), mean(test$Age[test$Title=="Mrs"], na.rm=TRUE), test$Age)
+```
+
+Existen otras estrategias para imputar valores perdidos, así como sustituir por el caso mayoritario.
+
+-   **Ejercicio 13**: Imputa valores perdidos en otras variables que hayas detectado.
+
+Para acabar...
+--------------
+
+Construir un modelo de Machine Learning no es tarea trivial. Como hemos visto, debemos tener claro el objetivo del problema. También debemos inspeccionar y entender cada uno de los elementos que aparece en la base de datos.
+
+El preprocesamiento de datos es un paso importante para obtener predicciones precisas. Deberemos aplicar nuestra intuición, así como técnicas que hayamos aprendido en diferentes problemas para tener un abanico amplio de estrategias a seguir.
+
+Muchos de los algorimtos que se utilizan para clasificación no son tampoco triviales ([XGBoost](https://xgboost.readthedocs.io/en/latest/)). Es esencial entender qué hay detrás de ellos para entender su comportamiento y crear un modelo robusto.
+
+El mundo del análisis de datos (Data Analytics, Data Science, Big Data...) es apasionante. Debido al auge de esta ciencia, existe cantidad de información en Internet, pero ¡no naufragues en el intento analizándola toda! Kaggle es un buen recurso para aprender de los mejores y practicar en algunas de sus competiciones.
+
+Para cualquier otra consulta puedes escribirme a: <avaldivia@ugr.es>.
