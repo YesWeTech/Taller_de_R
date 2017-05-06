@@ -2,8 +2,7 @@
 title: "Taller nivel medio"
 author: "Cristina HG(@_musicalnote) "
 date: "19-mayo-2017"
-output:  
-  rmarkdown::github_document
+output: rmarkdown::github_document
 ---
 
 Bienvenidos al taller nivel medio de R. En él aprenderás a hacer más eficiente tu código con alternativas a los bucles, como son **apply**, **sapply**, **lapply**. También aprenderás a paralelizar tu código R, usando más de un núcleo, y por último aprenderás con un ejemplo distintas formas de particionar un dataset y a hacer algunas de las representaciones gráficas más comunes, como boxplots, nube de puntos o hibstogramas. ¡Empezamos!
