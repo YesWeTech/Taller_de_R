@@ -1,9 +1,14 @@
-# Taller nivel medio
-Cristina HG(@_musicalnote) 19-mayo-2017
+---
+title: "Taller nivel medio"
+author: "Cristina HG(@_musicalnote) "
+date: "19-mayo-2017"
+output:  
+  rmarkdown::github_document
+---
 
 Bienvenidos al taller nivel medio de R. En él aprenderás a hacer más eficiente tu código con alternativas a los bucles, como son **apply**, **sapply**, **lapply**. También aprenderás a paralelizar tu código R, usando más de un núcleo, y por último aprenderás con un ejemplo distintas formas de particionar un dataset y a hacer algunas de las representaciones gráficas más comunes, como boxplots, nube de puntos o hibstogramas. ¡Empezamos!
 
-##Parte1: Agilizando el código - programación funcional 
+#Parte 1: Agilizando el código - programación funcional 
 Una práctica muy recomendable en R es evitar los bucles, sobre todo los **for**. Incluso hay quien prohíbe su uso totalmente... la razón principal es la eficiencia. ¿Pero tanto se nota? Bueno... eso júzgalo tú a continuación. En el siguiente código vamos a crear un conjunto de datos. Para ello símplemente vamos a ir generando los datos mediante una distibución normal aleatoria con **rnorm**, especificando el número de observaciones que queremos crear, la media y la desviación típica de las mismas. Lo hacemos dentro de un for, y creamos el conjunto de datos con 10000 filas y 200 columnas:
 
 ```{r}
@@ -26,6 +31,6 @@ dataset<-sapply(1:200, function(i){
   dataset<-cbind(dataset,rnorm(10000,i,1))
 })
 
-head(dataset,10)
+head(dataset,2)
 ```
 
