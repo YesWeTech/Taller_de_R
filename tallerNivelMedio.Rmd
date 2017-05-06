@@ -10,7 +10,7 @@ Bienvenidos al taller nivel medio de R. En él aprenderás a hacer más eficient
 # Parte 1: Agilizando el código - programación funcional 
 Una práctica muy recomendable en R es evitar los bucles, sobre todo los **for**. Incluso hay quien prohíbe su uso totalmente... la razón principal es la eficiencia. ¿Pero tanto se nota? Bueno... eso júzgalo tú a continuación. En el siguiente código vamos a crear un conjunto de datos. Para ello símplemente vamos a ir generando los datos mediante una distibución normal aleatoria con **rnorm**, especificando el número de observaciones que queremos crear, la media y la desviación típica de las mismas. Lo hacemos dentro de un for, y creamos el conjunto de datos con 10000 filas y 200 columnas:
 
-```{r}
+```{r, echo=TRUE}
 # Creamos el conjunto de datos con un bucle for
 
 dataset<-NULL
