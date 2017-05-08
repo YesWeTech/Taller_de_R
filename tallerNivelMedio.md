@@ -27,11 +27,11 @@ head(dataset[,1:10],2)
 ```
 
     ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1  0.940916 3.019587 2.905043 2.843252 5.529765 5.975697 7.429405 7.342353
-    ## 2 -1.462041 1.976032 3.219560 1.967850 4.731060 5.896555 6.639822 7.679912
-    ##          c9       c10
-    ## 1 10.108764  9.907254
-    ## 2  8.568124 10.245012
+    ## 1 1.3782448 2.843755 1.908992 2.476228 6.249685 6.592305 7.403839 8.717924
+    ## 2 0.7213582 2.877837 2.710931 5.108995 5.069998 4.546762 5.689932 9.612836
+    ##         c9      c10
+    ## 1 7.011970 9.159120
+    ## 2 9.069267 9.445571
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##         c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.983066 2.256665 3.547952 3.107136 6.428676 7.230708 4.852892 7.170250
-    ## 2 2.161487 3.620396 3.959297 3.010506 5.796606 8.002496 7.586940 8.080179
-    ##         c9      c10
-    ## 1 9.251400 9.827403
-    ## 2 9.028154 9.382904
+    ##          c1          c2       c3       c4       c5       c6       c7
+    ## 1 1.7093284  1.35256167 2.659561 3.294237 4.529713 6.082433 6.484713
+    ## 2 0.6821801 -0.07763474 3.114155 3.293220 6.748679 6.964857 7.577975
+    ##         c8       c9      c10
+    ## 1 7.981756 9.145868 11.57335
+    ## 2 5.891570 8.608384 10.85979
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0035 172.0050 173.0042 174.0050 174.9939 176.0040 176.9878 177.9911 
+    ## 171.0305 171.9922 172.9889 174.0140 175.0137 176.0074 177.0015 178.0042 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0005 179.9926 180.9822 182.0019 182.9939 183.9917 184.9963 186.0041 
+    ## 179.0016 180.0018 180.9953 182.0037 182.9932 184.0024 184.9917 185.9992 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0097 187.9767 189.0128 190.0088 190.9890 192.0011 192.9992 194.0096 
+    ## 186.9998 188.0031 189.0109 189.9801 191.0061 191.9986 192.9896 193.9940 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 194.9993 196.0066 196.9842 198.0030 198.9923 200.0002
+    ## 195.0001 195.9836 197.0107 197.9976 199.0103 200.0097
 
 #### Ejercicio 2:
 
@@ -106,13 +106,13 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1565
+    ## [1] 1566
     ## 
     ## [[2]]
-    ## [1] 216
+    ## [1] 222
     ## 
     ## [[3]]
-    ## [1] 13
+    ## [1] 9
     ## 
     ## [[4]]
     ## [1] 0
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1565  216   13    0    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1566  222    9    0    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -157,3 +157,37 @@ negatives.count
 #### Ejercicio 4:
 
 **Usa programación funcional para sustituir por *NAs* todos los números negativos del dataset. Puedes usar *length(which(is.na(dataset\[\[i\]\])))* para comprobar si lo has hecho bien, comprobando que el número de NAs de cada columna coincide con el número de negativos que obtuvimos anteriormente para cada columna.**
+
+Por si quieres saber más: Paralelizando en R
+--------------------------------------------
+
+Una práctica muy útil en R es el paralelismo. Supongamos que queremos ejecutar una misma función sobre distintos datasets del mismo tamaño. Si los datasets fueran aproximadamente del tamaño del nuestro, o la función fuera costosa en cómputo, podría tardar mucho tiempo en realizar las ejecuciones.
+Una opción para acortar ese tiempo es hacerlo en paralelo, es decir, utilizar varios núcleos del ordenador para realizar la tarea, y si has entendido **apply**, **lapply** y **sapply** es muy directo. Las tres funciones explicadas arriba, tienen una versión paralela: **parApply**, **parLapply** y **parSapply** incluidas en el paquete **parallel**. Para usarlas, sólo hay que tener en cuenta que es necesario crear un cluster con tantos cores como deseemos utilizar, con la función **makeCluster()** y pasarle el cluster a la función **parApply** que deseemos utilizar, además de los parámetros que ya le pasábamos anteriormente. Por último, una buena práctica es detener el cluster creado cuando ya no lo necesitamos con **stopCluster()**.
+
+Por ejemplo, se puede paralelizar la generación de 25 soluciones binarias aleatorias y su optimización a través de un algoritmo de búsqueda local:
+
+``` r
+# cargamos librería
+  library(parallel)
+# obtenemos nuestro número de cores
+  no_cores <- detectCores()
+# creamos el cluster  
+  cl <- makeCluster(no_cores-1,type="FORK")
+# utilizamos parLapply , pasándole el cluster  
+  ModelosBL <- parLapply(cl,seq_along(1:25),  function(i){
+    set.seed(12345*i)
+    # genera una solución vecina aleatoria
+    vecina<-sample(0:1,350,replace=TRUE)
+    # optimizar con búsqueda local
+    modelo<-LocalSearchModified(vecina)
+    modelo
+  }) 
+# detenemos el cluster  
+stopCluster(cl)
+```
+
+(No se incluye el código del algoritmo de Búsqueda local).
+
+#### Ejercicio 5 (Opcional) :
+
+**Prueba a crear otro dataset como el que creamos al comienzo del taller. Luego paraleliza el código para aplicar una función que eleva cada valor al cuadrado, sobre cada dataset.** **Nota: Es conveniente que crees el cluster con tu número de cores -1.**
