@@ -224,6 +224,7 @@ __Una vez hayas definido tu Dataframe, expórtalo a un csv con la función `writ
 ```{r}
 ```
 
+### Vectorizando
 
 Al igual que los vectores o las matrices, en los _Dataframe_ también podemos seleccionar elementos usando el operador `[]` y el operador `$`.
 
@@ -259,4 +260,35 @@ __Estudia la documentación de `subset` y selecciona aquellos productos de tu li
 
 ```{r}
 ```
+
+### Añadiendo y eliminando columnas o elementos
+
+Añadir o eliminar columnas a un _Dataframe_ es algo fundamental. Nos puede servir, entre otras cosas, para crear columnas que sean una combinación de otras columnas. Para ello se usa la función `cbind`:
+
+```{r}
+twitters <- c("unintendedbar","_musicalnote", "ana_valdi", "brau_vl", "TessaAlgarra")
+cbind(amigos, twitters)
+```
+
+Para eliminar una columna, sólo tenemos que establecerla a `NULL`:
+
+```{r}
+amigos$num_favorito <- NULL
+amigos
+```
+
+Para eliminar una (o varias) fila, lo hacemos usando el operador `-`:
+
+```{r}
+amigos <- amigos[-c(1,2),]
+amigos
+```
+
+#### Ejercicio
+
+__Elimina todos los productos de tu cesta de la compra que contengan aceite de palma.__
+
+```{r}
+```
+
 
