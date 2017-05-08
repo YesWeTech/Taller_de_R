@@ -91,7 +91,7 @@ Suma     | +
 Resta    | - 
 Multiplicación | *
 División | /
-Exponente | ^
+Exponente | ^ ó **
 Módulo | %%
 
 Por ejemplo:
@@ -185,13 +185,33 @@ un_plato <- c("Magdalenas", "Dulce")
 elementos <- c("SSD", "Nuevo")
 
 names(un_plato) <- c("Nombre", "Tipo")
-names(otro_plato) <- c("Elemento", "Estado")
+names(elementos) <- c("Elemento", "Estado")
 ```
+
+### Operaciones aritméticas y otras funciones
+
+Al igual que se pueden realizar operaciones aritméticas con variables, esto también es posible realizarlo con nuestros arrays. Hay que tener en cuenta, que estas operaciones se hacen elemento a elemento. Por ejemplo:
+
+```{r}
+a <- c(1,2,3)
+b <- c(4,5,6)
+
+cat("* Suma:", a+b)
+cat("* Resta:", a-b)
+cat("* Multiplicación:", a*b)
+cat("* División:", a/b)
+```
+Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de calcular la sumatoria de un vector, como es el caso de la función `sum`, el producto de los elementos de un vector, en este caso es `prod`, la media, para la cual llamaremos a `mean`, etc. Además de funciones como `max` o `min`.
 
 #### Ejercicio
 
-Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente.
+Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente. 
 
+Además de esto, es importante saber la pérdida o ganancia total que has tenido cada día, así como la media total de ganancias durante tus vacaciones y lo que has ganado en total a lo largo de la semana. Para ello, utiliza los conocimientos adquiridos y tus habilidades estadísticas, y no olvides mostrar tus datos por pantalla.
+
+```{r}
+
+```
 
 
 ## Dataframes

@@ -20,22 +20,30 @@ Para instalar _Rstudio_ en __Arch Linux__ (la instalación será bastante larga 
 $ pacaur -S rstudio-desktop
 ```
 
+Para evitar esto, podemos descargar el paquete binario de R-Studio, que nos ahorrará bastante tiempo, aunque actualmente es posible que surjan problemas a la hora de instalar por alguna dependencia:
+
+```bash
+$ pacaur -S rstudio-desktop-bin
+```
+
 También podemos [descargar directamente](https://www.rstudio.com/products/rstudio/download/) _Rstudio_ de su página oficial. Hay disponibles instaladores para __Windows__, __Mac OS__, __Ubuntu__ y __Fedora__.
 
 ## Clonando el repositorio
 Una vez tenemos _Rstudio_ instalado, clonamos el repositorio. Para ello, en _Rstudio_ seguimos los siguientes pasos:
 
-1. File > New Project
-2. Version control
-3. Copiamos la URL del repositorio
+1. File > New Project.
+2. Version control.
+3. Copiamos la URL del repositorio.
 4. Confirmamos.
 
 ## Más recursos y material
 
-* [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r)
+* [Introducción a R de la documentación oficial](https://cran.r-project.org/doc/manuals/r-release/R-intro.html).
 
-* [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets)
+* [Curso de R básico (en inglés)](https://www.datacamp.com/courses/free-introduction-to-r).
 
-* [Chuleta Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+* [Twitter KaggleDatasets](https://twitter.com/KaggleDatasets).
 
-* [Haciendo cosas con la api de github desde R](https://elbauldelprogramador.com/githubmininglanguages/)
+* [Chuleta Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
+
+* [Haciendo cosas con la api de github desde R](https://elbauldelprogramador.com/githubmininglanguages/).
