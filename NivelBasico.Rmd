@@ -225,5 +225,38 @@ __Una vez hayas definido tu Dataframe, expórtalo a un csv con la función `writ
 ```
 
 
+Al igual que los vectores o las matrices, en los _Dataframe_ también podemos seleccionar elementos usando el operador `[]` y el operador `$`.
 
+Podemos seleccionar toda una columna:
+
+```{r}
+amigos$nombre
+amigos["nombre"]
+```
+
+El operador `$` devuelve un vector mientras que el `[]` devuelve un _Dataframe_ con una única columna.
+
+Podemos seleccionar varias columnas, seleccionandolas con un vector:
+
+```{r}
+amigos[,c("nombre","altura")]
+```
+
+E incluso, podemos seleccionar unas determinadas filas:
+
+```{r}
+amigos[seq(1,3), c("nombre", "altura")]
+```
+
+¿Y si queremos las columnas/filas que __cumplan una determinada condición__? Para ello, tendremos que usar la función `subset`. Por ejemplo, queremos las personas cuyo postre favorito sean los _pasteles_.
+
+```{r}
+subset(x=amigos, subset=dulce_favorito=="Pastel", select=c(nombre, es_chica))
+```
+
+### Ejercicio
+__Estudia la documentación de `subset` y selecciona aquellos productos de tu lista de la compra que tengan un precio inferior a 5€ y que además no contengan aceite de palma.__
+
+```{r}
+```
 
