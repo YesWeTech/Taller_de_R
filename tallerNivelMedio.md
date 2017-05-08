@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##         c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 1.314100 2.332448 4.041926 3.406950 5.849706 5.275810 5.840109 7.979973
-    ## 2 1.306786 2.576031 1.881525 6.177272 6.297485 5.980646 7.370110 6.849714
-    ##         c9      c10
-    ## 1 9.945375 11.12709
-    ## 2 9.934660 11.39247
+    ##           c1       c2       c3       c4       c5       c6       c7
+    ## 1  1.9778318 1.571576 1.416988 5.703051 4.823692 6.027080 6.240403
+    ## 2 -0.7492162 1.938948 4.804106 3.973111 4.249003 6.604007 6.237744
+    ##         c8       c9       c10
+    ## 1 7.465466 9.190457  9.405896
+    ## 2 8.216771 7.326728 10.876314
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -48,11 +48,11 @@ head(dataset[,1:10],2)
 ```
 
     ##           c1        c2       c3       c4       c5       c6       c7
-    ## 1  3.1494619 0.4666837 3.013599 3.984017 5.091506 7.980825 6.754699
-    ## 2 -0.5920479 2.0312720 3.688432 5.405028 4.198555 5.757965 9.105606
-    ##         c8       c9      c10
-    ## 1 7.579990 9.028846 10.65944
-    ## 2 7.820918 8.976397 10.70250
+    ## 1  2.2990862 2.8937689 1.764426 4.413941 6.024861 6.926135 8.037996
+    ## 2 -0.7824227 0.8904772 2.603397 3.165089 3.823416 7.599952 5.384729
+    ##         c8       c9       c10
+    ## 1 5.790584 8.318237  9.326089
+    ## 2 9.181260 8.813165 10.480627
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -67,25 +67,93 @@ Apply, lapply y sapply
 
 ### Apply
 
-Cuando tenemos un conjunto de datos sobre el que queremos hacer alguna operación por filas o columnas, podemos usar **apply(datos,1|2,función)**, donde *datos* son los datos sobre los que queremos operar, *1* es un flag para indicar si queremos operar por filas o *2* si queremos operar por columnas, y *función* es la función que queremos aplicar a cada fila o columna de los datos proporcionados.
+Cuando tenemos un conjunto de datos sobre el que queremos hacer alguna operación por filas o columnas, podemos usar **apply(datos, 1|2, función)**, donde ***datos*** son los datos sobre los que queremos operar, ***1*** es un flag para indicar si queremos operar por filas o ***2*** si queremos operar por columnas, y ***función*** es la función que queremos aplicar a cada fila o columna de los datos proporcionados. Es importante que los datos sean del mismo tipo para poder realizar las mismas operaciones sobre ellos.
 
 Por ejemplo, podemos usar **apply** para calcular la media de cada columna de nuestro gran dataset:
 
 ``` r
 col.means<-apply(dataset,2,mean)
-# mostramos sólo las 20 últimas líneas por simplificar la salida
+# mostramos sólo las 30 últimas líneas por simplificar la salida
 tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 170.9954 171.9791 172.9869 173.9937 174.9968 176.0097 177.0081 177.9922 
+    ## 171.0020 171.9963 172.9991 173.9923 174.9695 175.9850 177.0129 177.9986 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0244 179.9914 181.0024 181.9978 182.9843 184.0051 184.9832 185.9967 
+    ## 179.0084 180.0060 181.0066 181.9872 182.9922 183.9969 184.9814 186.0028 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 186.9976 188.0091 189.0136 189.9950 191.0031 191.9782 193.0082 193.9961 
+    ## 186.9895 188.0049 189.0259 189.9987 191.0321 192.0034 193.0024 193.9899 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 194.9857 196.0111 196.9945 197.9948 199.0160 200.0042
+    ## 195.0053 195.9918 196.9990 197.9973 198.9994 200.0016
 
 #### Ejercicio 2:
 
 **Usa Apply para calcular el coeficiente de variación (desviación típica dividido por la media) de cada columna de nuestro conjunto de datos.**
+
+### Lapply
+
+Esta función recibe unos datos, que suelen ser una lista o un vector, y una función como parámetros. Su funcionamiento consiste en recorrer los datos especificados y aplicarles la función especificada. Es como una versión de Apply que devuelve el resultado en forma de lista, por eso la **L**.
+
+Por ejemplo, podemos usar **lapply** para calcular cuántos números negativos hay en cada columna de nuestro dataset:
+
+``` r
+negatives.count<-lapply(1:ncol(dataset), function(i){
+  length(which(dataset[[i]]<0))
+})
+
+# mostramos sólo un trozo del output por simplicidad
+head(negatives.count,4)
+```
+
+    ## [[1]]
+    ## [1] 1599
+    ## 
+    ## [[2]]
+    ## [1] 223
+    ## 
+    ## [[3]]
+    ## [1] 20
+    ## 
+    ## [[4]]
+    ## [1] 0
+
+Como veis, nos devuelve el resultado en una lista. Si quisiéramos el resultado en forma de vector en vez de lista, podemos usar **unlist** sobre la salida de **lapply**.
+
+### Sapply
+
+La sintaxis es la misma que la de **lapply**, cambiando el nombre de la función. La dinámica también es la misma, pero **sapply** devuelve como resultado un vector en lugar de una lista.
+
+Por ejemplo, podemos repetir el código anterior usando **sapply**, y veremos que sólo difiere en el formato que presenta la salida:
+
+``` r
+negatives.count<-sapply(1:ncol(dataset), function(i){
+  length(which(dataset[[i]]<0))
+})
+
+# mostramos la salida
+negatives.count
+```
+
+    ##   [1] 1599  223   20    0    0    0    0    0    0    0    0    0    0    0
+    ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [57]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [71]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [85]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ##  [99]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [113]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [127]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [141]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [155]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [169]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [183]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    ## [197]    0    0    0    0
+
+#### Ejercicio 3:
+
+**El ejemplo que hemos hecho con lapply y sapply no es muy reutilizable, ya que estamos asumiendo que existe una variable que se llama *dataset* y que contiene un dataset. ¿Cómo podemos arreglarlo?** **Pista: las funciones pueden recibir más de un sólo parámetro.**
+
+#### Ejercicio 4:
+
+**Usa programación funcional para sustituir por *NAs* todos los números negativos del dataset.**
