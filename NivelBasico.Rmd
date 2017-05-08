@@ -219,7 +219,11 @@ __Crea tu propio DataFrame sobre la lista de la compra, con los siguientes atrib
 * __Cantidad a comprar__
 * __¿Lleva aceite de palma?__
 
-__Una vez hayas definido tu Dataframe, 
+__Una vez hayas definido tu Dataframe, expórtalo a un csv con la función `write.csv` y vuélvelo a leer con la función `read.csv`. Para ver la documentación de estas dos funciones escribe `?nombre.de.la.funcion` en el intérprete de R.__
+
+```{r}
+```
+
 
 
 
