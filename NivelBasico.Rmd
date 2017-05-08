@@ -2,7 +2,7 @@
 title: "Nivel Basico"
 author: "Geek and Tech Girls"
 date: "17 de abril de 2017"
-output: github_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -53,3 +53,31 @@ __Declara un entero sin la `L` al final y comprueba su tipo, ¿qué tipo de vari
 ## Vectores y factores
 
 ## Dataframes
+
+Un ___Dataframe___ es una especie de _matriz_, en la que cada columna puede tener un tipo de dato diferente. Es muy parecido a una tabla. Por ejemplo, si queremos guardar datos sobre nuestros compañeros de clase podríamos hacer un _Dataframe_:
+
+```{r}
+nombre <- c("Paloma", "Cristina", "Ana", "Braulio", "Teresa")
+num_favorito <- c(25L, 26L, 27L, 28L, 29L)
+dulce_favorito <- c("Cupcake","Pastel","Bizcocho","Bombón","Pastel")
+altura <- c(1.70, 1.75, 1.72, 1.80, 1.76)
+es_chica <- c(T,T,T,F,T)
+
+amigos <- data.frame(nombre, num_favorito, dulce_favorito, altura, es_chica)
+amigos
+```
+
+
+#### Ejercicio
+
+__Crea tu propio DataFrame sobre la lista de la compra, con los siguientes atributos:__
+
+* __Nombre del producto__
+* __Precio__
+* __Cantidad a comprar__
+* __¿Lleva aceite de palma?__
+
+__Una vez hayas definido tu Dataframe, 
+
+
+
