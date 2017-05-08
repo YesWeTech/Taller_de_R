@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##           c1       c2       c3       c4       c5       c6       c7
-    ## 1  1.9778318 1.571576 1.416988 5.703051 4.823692 6.027080 6.240403
-    ## 2 -0.7492162 1.938948 4.804106 3.973111 4.249003 6.604007 6.237744
-    ##         c8       c9       c10
-    ## 1 7.465466 9.190457  9.405896
-    ## 2 8.216771 7.326728 10.876314
+    ##          c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1  0.940916 3.019587 2.905043 2.843252 5.529765 5.975697 7.429405 7.342353
+    ## 2 -1.462041 1.976032 3.219560 1.967850 4.731060 5.896555 6.639822 7.679912
+    ##          c9       c10
+    ## 1 10.108764  9.907254
+    ## 2  8.568124 10.245012
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##           c1        c2       c3       c4       c5       c6       c7
-    ## 1  2.2990862 2.8937689 1.764426 4.413941 6.024861 6.926135 8.037996
-    ## 2 -0.7824227 0.8904772 2.603397 3.165089 3.823416 7.599952 5.384729
-    ##         c8       c9       c10
-    ## 1 5.790584 8.318237  9.326089
-    ## 2 9.181260 8.813165 10.480627
+    ##         c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1 0.983066 2.256665 3.547952 3.107136 6.428676 7.230708 4.852892 7.170250
+    ## 2 2.161487 3.620396 3.959297 3.010506 5.796606 8.002496 7.586940 8.080179
+    ##         c9      c10
+    ## 1 9.251400 9.827403
+    ## 2 9.028154 9.382904
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0020 171.9963 172.9991 173.9923 174.9695 175.9850 177.0129 177.9986 
+    ## 171.0035 172.0050 173.0042 174.0050 174.9939 176.0040 176.9878 177.9911 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0084 180.0060 181.0066 181.9872 182.9922 183.9969 184.9814 186.0028 
+    ## 179.0005 179.9926 180.9822 182.0019 182.9939 183.9917 184.9963 186.0041 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 186.9895 188.0049 189.0259 189.9987 191.0321 192.0034 193.0024 193.9899 
+    ## 187.0097 187.9767 189.0128 190.0088 190.9890 192.0011 192.9992 194.0096 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 195.0053 195.9918 196.9990 197.9973 198.9994 200.0016
+    ## 194.9993 196.0066 196.9842 198.0030 198.9923 200.0002
 
 #### Ejercicio 2:
 
@@ -106,13 +106,13 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1599
+    ## [1] 1565
     ## 
     ## [[2]]
-    ## [1] 223
+    ## [1] 216
     ## 
     ## [[3]]
-    ## [1] 20
+    ## [1] 13
     ## 
     ## [[4]]
     ## [1] 0
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1599  223   20    0    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1565  216   13    0    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -156,4 +156,4 @@ negatives.count
 
 #### Ejercicio 4:
 
-**Usa programación funcional para sustituir por *NAs* todos los números negativos del dataset.**
+**Usa programación funcional para sustituir por *NAs* todos los números negativos del dataset. Puedes usar *length(which(is.na(dataset\[\[i\]\])))* para comprobar si lo has hecho bien, comprobando que el número de NAs de cada columna coincide con el número de negativos que obtuvimos anteriormente para cada columna.**
