@@ -11,13 +11,104 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Tutorial básico sobre R
 
+Al terminar este tutorial tendrás unas nociones básicas de R y podrás:
+
+* Instalar paquetes nuevos en R
+* Crear un script de R
+* Hacer operaciones básicas
+* Utilizar distintos tipos de datos simples
+* Crear vectores y vectores-factores
+* Conocer los dataframes de R
+
 ## R Studio
+
+En este taller utilizaremos R Studio. Consulta el [README](https://github.com/geekandtechgirls/Taller_de_R/blob/master/README.md) para saber más sobre cómo instalarlo. La interfaz de R Studio es así:
+
+![](imgs/interfaz_R_studio.png)
+
+Como ves, puedes ir escribiendo los comandos directamente en la línea de comandos, pero también puedes hacer un _script_ (un archivo con varios comandos juntos). Para ello nos vamos arriba a la izquierda: ![](imgs/new_file.png).
+
+Además de _scripts_, podemos crear otros tipos de archivos como un _R notebook_ o _R markdown_, como los tutoriales del taller.
+
+Para ejecutar las líneas del _script_ podemos usar _Run_ o hacer _Ctrl+Intro_.
+
+Para añadir comentarios, utiliza la almohadilla: #.
+
+### Instalando paquetes nuevos
+
+Para instalar paquetes nuevos en R, tenemos dos opciones: 
+
+* Usar el comando
+```{r}
+install.packages('nombre_del_paquete')
+```
+* Usar el gestor de paquetes (pestaña _Packages -> Install_)
+
+![](imgs/instalar_paquete.png)
+
+Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
+
+```{r}
+require(nombre_del_paquete)
+```
+
+### Ejercicio
+__Instala el paquete 'ggplot2', muy útil para visualizar datos y hacer gráficas de todo tipo.__
+
+```{r}
+```
 
 ## Aritmética con R
 
+Antes de operar sobre grandes cantidades de datos o usar estructuras de datos complejas, es bueno que nos familiaricemos más con la interfaz de R.
+
 ### Asignación de variables
 
+En R podemos trabajar directamente con los datos o guardarlos en variables, para así poder tenerlos disponibles en todo momento y trabajar con ellos. El operador de asignación es __<-__. Por ejemplo:
+
+```{r}
+x <- 10
+```
+
+Si nos fijamos a la derecha, nos aparece la variable creada:
+![](imgs/var_x.png)
+
+Y para visualizar variables, lo único que tenemos que hacer es _llamarlas_:
+
+```{r}
+x
+```
+
+Así, podemos ponerle nombre a cualquier operación, además de a funciones. Ten siempre en cuenta que debes usar nombres de variables adecuados para que tu código siempre sea legible. 
+
 ### Operadores
+
+Los operadores numéricos básicos de R son:
+
+Operador | Símbolo
+-------- | -------
+Suma     | +
+Resta    | - 
+Multiplicación | *
+División | /
+Exponente | ^
+Módulo | %%
+
+Por ejemplo:
+
+```{r}
+1+2
+```
+
+O usando variables:
+
+```{r}
+edad_Nathan <- 6
+edad_Fausto <- 5
+edad_Kimi <- 1
+edad_gatos <- edad_Nathan + edad_Fausto + edad_Kimi
+edad_gatos
+```
 
 ## Tipos de datos
 
@@ -51,6 +142,57 @@ __Declara un entero sin la `L` al final y comprueba su tipo, ¿qué tipo de vari
 ```
 
 ## Vectores y factores
+
+### Declaración de un vector
+
+En _R_, podemos decir que todo elemento que hagamos, será un vector o _array_, con una longitud determinada, en la que almacenaramos información. Esta información que almacenamos pueden ser datos de tipo _int_, _char_, etc.  Un vector lo crearemos con la función _combine_ `c()` . En esta función introduciremos los datos que queremos almacenar en nuestro array uno detrás de otro, separados por una coma.
+
+```{r}
+dado <- c(1, 2, 3, 4, 5, 6)
+letras <- c("a", "b", "c", "d", "e", "f")
+```
+
+#### Ejercicio
+
+Este año has tenido la suerte de que te has ido a las Vegas y has decidido jugar y apostar en el poker y la ruleta. Durante estos cinco  días que llevas de vacaciones tus ingresos y pérdidas han sido:
+
+* Lunes: has ganado 150$.
+* Martes: has ganado 5$.
+* Miércoles: has perdido 75$.
+* Jueves: has perdido 128$ (vaya racha).
+* Viernes: has ganado 15$.
+
+Y en el caso de la ruleta:
+
+* Lunes: has perdido 35$.
+* Martes: has ganado 40$.
+* Miércoles: has perdido 165$.
+* Jueves: has ganado 12$ (vaya racha).
+* Viernes: has ganado 178$.
+
+Como tu futuro económico parece incierto, has decido usar tus recientemente adquiridas capacidades en R para analizar estos datos y usar tus habilidades estadísticas para decidir si apostar o no en el futuro. Para ello, empieza introduciendo estos datos en  dos vectores.
+
+```{r}
+
+```
+
+### Asignar nombres a un vector
+
+Además de crear un vector con datos, en muchos casos, como es en la ciencia de datos, es importante saber qué es cada dato o qué representan los datos de un vector. Esto es muy fácil y cómodo de hacer con la función `names()`. Esta función recibe como argumento nuestro recién y estrenado array y se le asigna un nuevo array que contiene los nombres que queremos asignarle a nuestros datos almacenados. Un ejemplo es el siguiente:
+
+```{r}
+un_plato <- c("Magdalenas", "Dulce")
+elementos <- c("SSD", "Nuevo")
+
+names(un_plato) <- c("Nombre", "Tipo")
+names(otro_plato) <- c("Elemento", "Estado")
+```
+
+#### Ejercicio
+
+Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente.
+
+
 
 ## Dataframes
 
