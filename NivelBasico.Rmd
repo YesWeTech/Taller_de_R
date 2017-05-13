@@ -39,7 +39,7 @@ Para añadir comentarios, utiliza la almohadilla: #.
 Para instalar paquetes nuevos en R, tenemos dos opciones: 
 
 * Usar el comando
-```{r}
+```r
 install.packages('nombre_del_paquete')
 ```
 * Usar el gestor de paquetes (pestaña _Packages -> Install_)
