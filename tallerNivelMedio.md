@@ -1,6 +1,6 @@
 Taller nivel medio
 ================
-Cristina HG(@\_musicalnote)
+Cristina Heredia Gómez (@\_musicalnote)
 19-mayo-2017
 
 Bienvenidos al taller nivel medio de R. En él aprenderás a hacer más eficiente tu código con alternativas a los bucles, como son **apply**, **sapply**, **lapply**. También aprenderás a paralelizar tu código R, usando más de un núcleo, y por último aprenderás con un ejemplo distintas formas de particionar un dataset y a hacer algunas de las representaciones gráficas más comunes, como boxplots, nube de puntos o hibstogramas. ¡Empezamos!
@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##           c1       c2       c3       c4       c5       c6       c7
-    ## 1 -0.6769623 2.811364 1.736721 3.833331 6.128680 7.547859 7.644851
-    ## 2 -0.3192227 3.245700 4.060395 2.562024 3.147551 5.437098 6.310884
-    ##         c8       c9       c10
-    ## 1 9.379159 7.973049 10.337487
-    ## 2 8.902316 8.717597  8.727484
+    ##          c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1 1.4781056 3.141621 2.227792 4.159404 4.528034 7.554908 6.854195 8.715176
+    ## 2 0.2631171 3.128409 2.129799 3.121146 5.521708 8.011759 4.307940 8.610206
+    ##         c9       c10
+    ## 1 7.334099 10.532918
+    ## 2 8.116297  9.420532
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -48,11 +48,11 @@ head(dataset[,1:10],2)
 ```
 
     ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.8627921 2.541734 4.301893 1.478179 4.829547 5.598995 7.465207 6.877102
-    ## 2 1.7489964 0.739605 4.830726 3.021924 4.818849 6.186154 6.597888 6.920381
+    ## 1 0.6851457 2.181617 1.232219 4.352623 4.396439 6.140868 6.357915 8.534720
+    ## 2 0.7779760 2.848980 2.468172 3.014066 4.884404 6.394833 6.077894 6.614088
     ##         c9      c10
-    ## 1 8.236283 9.589537
-    ## 2 9.177134 9.767528
+    ## 1  8.70774 9.417683
+    ## 2 10.15478 9.077799
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 170.9956 172.0106 173.0080 173.9978 175.0166 176.0134 177.0155 178.0089 
+    ## 170.9983 172.0080 172.9907 174.0015 174.9908 175.9982 176.9843 178.0079 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 178.9810 179.9837 180.9795 181.9962 182.9822 183.9878 185.0043 186.0047 
+    ## 179.0092 180.0034 180.9989 182.0094 183.0010 183.9890 185.0003 186.0062 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 186.9910 187.9947 189.0034 190.0035 191.0074 192.0018 192.9923 194.0143 
+    ## 187.0067 187.9758 188.9947 189.9961 190.9871 192.0030 192.9939 193.9879 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 194.9930 195.9905 197.0044 197.9878 198.9931 200.0054
+    ## 195.0007 195.9930 196.9931 197.9896 198.9997 200.0107
 
 #### Ejercicio 2:
 
@@ -106,16 +106,16 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1559
+    ## [1] 1570
     ## 
     ## [[2]]
-    ## [1] 207
+    ## [1] 231
     ## 
     ## [[3]]
-    ## [1] 12
+    ## [1] 7
     ## 
     ## [[4]]
-    ## [1] 0
+    ## [1] 1
 
 Como veis, nos devuelve el resultado en una lista. Si quisiéramos el resultado en forma de vector en vez de lista, podemos usar **unlist** sobre la salida de **lapply**.
 
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1559  207   12    0    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1570  231    7    1    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -275,5 +275,45 @@ ggplot(d,aes(x=factor(age),y=circumference,fill=factor(age)))+geom_boxplot()+xla
 Donde **d** son los datos que queremos representar (edad y circuferencia), con **fill** indicamos que nos coloree los boxplots con tantos colores por defecto como años hay, con **geom\_boxplot()** indicamos que queremos la geometría de boxplots, y usamos **xlab** e **ylab** para cambiar los nombres de los ejes. Por último, cambiamos el nombre de la legenda con **scale\_fill\_discrete** como ya sabemos, y añadimos un título, que posicionamos.
 
 Con el código anterior, representamos la circuferencia del árbol por años. De nuevo podemos observar que a más años tienen los árboles, mayor diámetro del tronco presentan. También podemos obervar que hay un rango de años \[1004-1582\] donde es difícil distinguir la edad esacta que tiene el árbol en función de la circuferencia, y viceversa, pues muchos valores se solapan.
+
+También podemos representar la circuferencia del árbol frente al tipo de árbol que es:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-2])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=Tree,y=circumference,fill=Tree))+geom_boxplot()+xlab("clase de árbol")+ylab("circuferencia")+scale_fill_discrete(name="Árbol")+ggtitle("Representación de circuferencia de tronco por tipo de árbol ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+Pudiendo observar que los árboles 1, 3 y 5 han presentado en general en las mediciones realizadas menor diámetro de tronco que los árboles 2 y 4. Sin embargo, dado que los 5 árboles son 5 naranjos, es sensato pensar que esto podría deberse a que quizás no se les han tomado las mediciones a la misma edad. Pero veamos si esta hipótesis tiene o no fundamento. Representemos la edad a la que se le hicieron las mediciones a los árboles frente a los 5 tipos de árboles:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-3])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=Tree,y=age,fill=Tree))+geom_boxplot()+xlab("clase de árbol")+ylab("año en que se tomó medición")+scale_fill_discrete(name="Árbol")+ggtitle("Año en el que se tomó la medición por tipo de árbol ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+A la vista del gráfico, podemos afirmar que los 5 árboles fueron medidos cuando tenían la misma edad, y por eso todos lo boxplots del gráfico toman los mismos valores. Podemos comprobarlo no obstante con la función **identical**:
+
+``` r
+identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==2),2])
+```
+
+    ## [1] TRUE
+
+``` r
+identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==3),2])
+```
+
+    ## [1] TRUE
 
 ### Histogramas
