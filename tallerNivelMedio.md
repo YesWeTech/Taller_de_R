@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##            c1       c2       c3       c4       c5       c6       c7
-    ## 1  0.90917822 2.216374 1.900270 3.142260 4.129645 6.651031 5.123328
-    ## 2 -0.00252234 1.676310 3.927706 3.309619 5.707584 4.343166 7.999579
-    ##         c8        c9      c10
-    ## 1 9.218790  8.692785 9.180642
-    ## 2 7.201006 10.184900 8.576594
+    ##           c1       c2       c3       c4       c5       c6       c7
+    ## 1 -0.6769623 2.811364 1.736721 3.833331 6.128680 7.547859 7.644851
+    ## 2 -0.3192227 3.245700 4.060395 2.562024 3.147551 5.437098 6.310884
+    ##         c8       c9       c10
+    ## 1 9.379159 7.973049 10.337487
+    ## 2 8.902316 8.717597  8.727484
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##          c1        c2       c3       c4       c5       c6       c7
-    ## 1 1.0953191 3.2259873 3.231367 4.731914 5.885225 6.863831 7.400126
-    ## 2 0.4499808 0.5008557 1.829581 6.018862 6.126394 6.920153 7.235304
-    ##         c8       c9      c10
-    ## 1 7.558036 8.227761 11.05047
-    ## 2 8.692539 8.013604 11.36355
+    ##          c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1 0.8627921 2.541734 4.301893 1.478179 4.829547 5.598995 7.465207 6.877102
+    ## 2 1.7489964 0.739605 4.830726 3.021924 4.818849 6.186154 6.597888 6.920381
+    ##         c9      c10
+    ## 1 8.236283 9.589537
+    ## 2 9.177134 9.767528
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 170.9850 171.9954 173.0031 173.9887 174.9885 175.9860 177.0056 177.9841 
+    ## 170.9956 172.0106 173.0080 173.9978 175.0166 176.0134 177.0155 178.0089 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 178.9913 180.0054 180.9911 181.9935 183.0085 184.0012 185.0115 186.0088 
+    ## 178.9810 179.9837 180.9795 181.9962 182.9822 183.9878 185.0043 186.0047 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0001 187.9994 188.9892 190.0021 190.9984 192.0144 193.0164 194.0079 
+    ## 186.9910 187.9947 189.0034 190.0035 191.0074 192.0018 192.9923 194.0143 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 195.0031 196.0035 196.9998 197.9896 199.0043 199.9974
+    ## 194.9930 195.9905 197.0044 197.9878 198.9931 200.0054
 
 #### Ejercicio 2:
 
@@ -106,16 +106,16 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1591
+    ## [1] 1559
     ## 
     ## [[2]]
-    ## [1] 244
+    ## [1] 207
     ## 
     ## [[3]]
-    ## [1] 18
+    ## [1] 12
     ## 
     ## [[4]]
-    ## [1] 1
+    ## [1] 0
 
 Como veis, nos devuelve el resultado en una lista. Si quisiéramos el resultado en forma de vector en vez de lista, podemos usar **unlist** sobre la salida de **lapply**.
 
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1591  244   18    1    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1559  207   12    0    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -240,6 +240,8 @@ summary(Orange)
 
 Con **str** vemos que el dataset está compuesto por 35 filas y 3 columnas, y que una de sus columnas son factores, mientras que las otras dos son numéricas. Con **summary** obtenemos un resumen del dataset, como cual es el mínimo, máximo, media, mediana... de cada columna. Nota: En la columna *Tree* solo se muestra el número de muestras de casa clase porque los datos no son numéricos).
 
+### Nube de puntos
+
 Podemos hacer una primera exploración visual de los datos pintando los datos con la función **qplot** de **ggplot2**. Si no la tenemos instalada, la instalamos con `install.packages('ggplot2')`.
 
 ``` r
@@ -249,4 +251,29 @@ qplot(age, circumference, data = Orange, geom = "point",xlab = "años", ylab="ci
 
 ![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-**qplot** es una forma rápida y sencilla de hacer gráficos completos. Le indicamos los datos que queremos representar, qué geometría deseamos ( *geom* ) y qué deseamos poner en los ejes. Con `colour=Tree`, indicamos que nos coloree los datos en función de la clase a la que pertenezca, con los colores por defecto. Si quisiéramos darle unos colores personalizados, podríamos hacerlo añadiendo una nueva capa con **scale\_color\_manual**, lo que nos permitirá cambiar los colores manualmente. Por ejemplo, añadiendo: `scale_color_manual(values = c("#ff0000","#ff4000","#ff8000","#ffbf00","#ffff00")` cambiaríamos los colores por defecto por unos tonos cálidos. Usando el atributo *name* en **scale\_color\_discrete**, ponemos cambiar el título por defecto que le damos a la leyenda. Ésto también podemos hacerlo con **scale\_color\_manual** siempre y cuando especifiquemos también un conjunto de valores. Por último, podemos añadirle un título a nuestro gráfico usando el parámetro *main* o con *ggtitle()*.
+**qplot** es una forma rápida y sencilla de hacer gráficos completos. Le indicamos los datos que queremos representar, qué geometría deseamos ( *geom* ) y qué deseamos poner en los ejes. Con `colour=Tree`, indicamos que nos coloree los datos en función de la clase a la que pertenezca, con los colores por defecto. Si quisiéramos darle unos colores personalizados, podríamos hacerlo añadiendo una nueva capa con **scale\_color\_manual**, lo que nos permitirá cambiar los colores manualmente. Por ejemplo, añadiendo: `scale_color_manual(values = c("#ff0000","#ff4000","#ff8000","#ffbf00","#ffff00")` cambiaríamos los colores por defecto por unos tonos cálidos. Usando el atributo *name* en **scale\_color\_discrete**, ponemos cambiar el título por defecto que le damos a la leyenda. Ésto también podemos hacerlo con **scale\_color\_manual** siempre y cuando especifiquemos también un conjunto de valores. Por último, podemos añadirle un título a nuestro gráfico usando el parámetro **main** o con **ggtitle()**, y podemos guardar la imágen directamente con *ggsave()*.
+
+En cuanto a los datos, podemos observar que parece que la tendencia para los 5 árboles es que va aumentando el tamaño de la circuferencia de su tronco conforme van pasando los años. Sí, parece que eso de "a más años tienen más grande el tronco" es cierto.
+
+### Boxplots (o diagramas de cajas y bigotes)
+
+Otra visualización muy típica y útil son los Boxplots. Con ellos se representa visualmente cómo se distribuyen los valores que toma una variable en una cajita. La cajita se divide en tres cuartiles. El segundo cuartil, que se representa con la raya horizontal negra, es la mediana de esos datos. Las rayas verticales que atraviesan la cajita representan valores poco comunes. Concretamente, la raya de abajo representa todos los valores que están entre el primer cuartil y el mínimo valor que no es un outlier, mientras que la de arriba representa valores entre el tercer cuartil y el máximo valor que no es un outlier.
+
+Por ejemplo, podemos usar boxplots para representar unas variables frente a otras y obtener conclusiones:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-1])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=factor(age),y=circumference,fill=factor(age)))+geom_boxplot()+xlab("años")+ylab("circuferencia")+scale_fill_discrete(name="años")+ggtitle("Representación de circuferencia de tronco por años ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+Donde **d** son los datos que queremos representar (edad y circuferencia), con **fill** indicamos que nos coloree los boxplots con tantos colores por defecto como años hay, con **geom\_boxplot()** indicamos que queremos la geometría de boxplots, y usamos **xlab** e **ylab** para cambiar los nombres de los ejes. Por último, cambiamos el nombre de la legenda con **scale\_fill\_discrete** como ya sabemos, y añadimos un título, que posicionamos.
+
+Con el código anterior, representamos la circuferencia del árbol por años. De nuevo podemos observar que a más años tienen los árboles, mayor diámetro del tronco presentan. También podemos obervar que hay un rango de años \[1004-1582\] donde es difícil distinguir la edad esacta que tiene el árbol en función de la circuferencia, y viceversa, pues muchos valores se solapan.
+
+### Histogramas
