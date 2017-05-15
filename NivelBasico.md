@@ -211,7 +211,7 @@ names(un_plato) <- c("Nombre", "Tipo")
 names(elementos) <- c("Elemento", "Estado")
 ```
 
-### Operaciones aritméticas y otras funciones
+### Operaciones con arrays y otras funciones
 
 Al igual que se pueden realizar operaciones aritméticas con variables, esto también es posible realizarlo con nuestros arrays. Hay que tener en cuenta, que estas operaciones se hacen elemento a elemento. Por ejemplo:
 
@@ -242,6 +242,8 @@ cat("* División:", a/b)
 
     ## * División: 0.25 0.4 0.5
 
+A su vez, también podemos realizar operaciones booleanas con arrays, utilizando los operadores `<`, `>`, `==`, etc. Estas operaciones no tienen por qué ser solo con arrays, sino que podemos comparar un array con un entero por ejemplo, y la operación booleana se aplica elemento a elemento con el entero con el que estamos comparando.
+
 Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de calcular la sumatoria de un vector, como es el caso de la función `sum`, el producto de los elementos de un vector, en este caso es `prod`, la media, para la cual llamaremos a `mean`, etc. Además de funciones como `max` o `min`.
 
 #### Ejercicio
@@ -249,6 +251,189 @@ Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de
 Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente.
 
 Además de esto, es importante saber la pérdida o ganancia total que has tenido cada día, así como la media total de ganancias durante tus vacaciones y lo que has ganado en total a lo largo de la semana. Para ello, utiliza los conocimientos adquiridos y tus habilidades estadísticas, y no olvides mostrar tus datos por pantalla.
+
+### Acceso a un vector
+
+Al igual que en muchos otros lenguajes, podemos acceder a los elementos del vector por el índice de la posición que ocupa el elemento en el vector. Como vemos en el siguiente ejemplo:
+
+``` r
+mis_dulces <- c("chocolate", "tortas", "magdalenas", "brownie")
+mis_dulces[2]
+```
+
+    ## [1] "tortas"
+
+Pero existe una pequeña diferencia frente a otros lenguajes, y es que los índices no empiezan desde el 0, sino desde el 1. Es por eso por lo que al acceder al elemento 2 en el vector anterior, nos devuelve `tortas` en vez de `magdalenas`.
+
+A la hora de recorrerlo, podemos hacerlo con un bucle `for` al igual que haríamos en Python, C++, entre otros. Esta solución es totalmente válida, pero, en caso de que queramos aplicar la misma operación a muchos elementos del vector, esto aumenta mucho los tiempos de cálculo. Por esto, R nos ofrece una solución que se conoce como el "*acceso vectorizado*", que consiste en acceder a todos los elementos a la misma vez en una sola línea, por decirlo de una forma sencilla.
+
+En el siguiente ejemplo, vamos a multiplicar por dos, los 10 primeros elementos de nuestra serie.
+
+``` r
+serie <- seq(1, 100)
+serie[seq(1, 10)] = serie[seq(1, 10)]*2
+```
+
+Esto es un ejemplo de si queremos acceder por el índice. También, podemos acceder a los elementos del vector que cumplan una determinada condición, por ejemplo, obtener de un vector todos los elementos pares de este.
+
+``` r
+serie <- seq(1, 20)
+serie[serie %% 2 == 0]
+```
+
+    ##  [1]  2  4  6  8 10 12 14 16 18 20
+
+O incluso acceder sólo a ciertos índices:
+
+``` r
+serie[5:10]
+```
+
+    ## [1]  5  6  7  8  9 10
+
+#### Ejercicio
+
+También podemos acceder a los elementos del vector por el nombre que tengan sus elementos. Por ello, prueba a acceder a las ganancias que has tenido el lunes y el viernes, para ver la suerte que has tenido al empezar tu semana de vacaciones y al terminarla.
+
+#### Ejercicio
+
+Para comprobar que el acceso vectorizado es más rápido que con un bucle `for`, con el acceso vectorizado al vector para sumarle uno a los elementos pares del vector.
+
+``` r
+serie <- seq(1, 1000)
+
+inicio <- Sys.time()
+for(i in 1:1000) {
+  if(serie[i] %% 2 == 0){
+   serie[i] = serie[i] + 1 
+  }
+}
+fin <- Sys.time()
+cat("Tiempo: ", fin - inicio, "s.")
+```
+
+    ## Tiempo:  0.003709078 s.
+
+``` r
+serie <- seq(1, 1000)
+
+inicio <- Sys.time()
+# Pon tu código aquí
+
+fin <- Sys.time()
+cat("Tiempo: ", fin - inicio, "s.")
+```
+
+    ## Tiempo:  0.001196146 s.
+
+Matrices
+--------
+
+Las ***matrices*** son elementos que almacenan datos de cualquier tipo, en una estructura con un número de filas y columnas determinado. En R, podemos crear matrices con la función `matrix`.
+
+``` r
+mi_matriz_por_filas <- matrix(1:9, byrow = T, nrow = 3)
+mi_matriz_por_filas
+```
+
+    ##      [,1] [,2] [,3]
+    ## [1,]    1    2    3
+    ## [2,]    4    5    6
+    ## [3,]    7    8    9
+
+``` r
+mi_matriz_por_columnas <- matrix(1:9, byrow = F, nrow = 3)
+mi_matriz_por_columnas
+```
+
+    ##      [,1] [,2] [,3]
+    ## [1,]    1    4    7
+    ## [2,]    2    5    8
+    ## [3,]    3    6    9
+
+Otra forma de crear una matriz, es a partir de un vector que contenga la información que queremos representar en forma de matriz, como es el siguiente caso:
+
+``` r
+v_info_1 <- c(5466.5, 246)
+v_info_2 <- c(456, -567)
+v_info_3 <- c(3249783, 596894)
+
+info <- c(v_info_1, v_info_2, v_info_3)
+
+matriz <- matrix(info, byrow = T, nrow = 3)
+matriz
+```
+
+    ##           [,1]   [,2]
+    ## [1,]    5466.5    246
+    ## [2,]     456.0   -567
+    ## [3,] 3249783.0 596894
+
+### Asignar nombres a una matriz
+
+Al igual que pasaba con los vectores, podemos ponerle nombres a nuestra matriz, pero en este caso, en vez de nombrar elemento a elemento, podemos ponerle nombre a las filas y las columnas de la matriz, para que acceder a ellas sea más cómodo. Para ello, podemos usar las funciones `rownames(tu_matriz)` y `colnames(tu_matriz)`.
+
+#### Ejercicio
+
+Genera una matriz de tamaño 2 × 4 a partir de una secuencia de enteros, y nombra las filas y las columnas.
+
+### Añadir filas y columnas a una matriz
+
+Una vez definida una matriz, siempre es posible añadir una columna nueva o una nueva fila en caso de que nos haga falta. Ambas cosas son muy sencillas puesto que R ofrece dos funciones para realizar esta tarea, `cbind` para añadir una columna y `rbind` para añadir una fila a nuestra matriz.
+
+La única restricción que tienen estas funciones, es que tienen que tener el mismo número de elementos que la matriz, es decir, que si la matriz tiene cuatro columnas y vamos a añadir una fila, esta fila debe tener cuatro elementos. Lo mismo pasa con a la hora de añadir una columna.
+
+#### Ejercicio
+
+Añade a la matriz anterior una nueva columna y una nueva fila.
+
+### Acceder a los elementos de una matriz
+
+El acceso a los elementos de una matriz en R, es tan secillo como el acceder a los elementos en un array como has visto anteriormente. Al igual que antes, puedes acceder elemento a elemento a base de bucles `for` ([pincha aquí](https://media.giphy.com/media/vPN3zK9dNL236/giphy.gif)), pero, lo más eficiente es acceder de forma vectorizada a los elementos que queremos acceder.
+
+-   Acceder a un elemento en concreto.
+
+``` r
+mi_matriz <- matrix(seq(1,100), byrow = T, nrow = 10)
+mi_matriz[5,6]
+```
+
+    ## [1] 46
+
+-   Acceder a una fila entera.
+
+``` r
+mi_matriz[4,]
+```
+
+    ##  [1] 31 32 33 34 35 36 37 38 39 40
+
+-   Acceder a una columna entera.
+
+``` r
+mi_matriz[,9]
+```
+
+    ##  [1]  9 19 29 39 49 59 69 79 89 99
+
+-   Acceder a un subconjunto de elementos de la matriz.
+
+``` r
+mi_matriz[6:8,3:5]
+```
+
+    ##      [,1] [,2] [,3]
+    ## [1,]   53   54   55
+    ## [2,]   63   64   65
+    ## [3,]   73   74   75
+
+### Operaciones con matrices
+
+Al igual que pasaba con los vectores, podemos realizar operaciones aritméticas básicas con dos matrices, con los operadores `+`, `*`, `-`, `/`, etc. Del mismo modo, podemos realizar operaciones booleanas entre dos matrices.
+
+#### Ejercicio
+
+Define dos matrices y prueba el funcionamiento de los operadores aritméticos entre dos matrices y entre un entero y una matriz.
 
 Dataframes
 ----------
