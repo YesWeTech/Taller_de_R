@@ -27,11 +27,11 @@ head(dataset[,1:10],2)
 ```
 
     ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 1.4781056 3.141621 2.227792 4.159404 4.528034 7.554908 6.854195 8.715176
-    ## 2 0.2631171 3.128409 2.129799 3.121146 5.521708 8.011759 4.307940 8.610206
+    ## 1 1.4134424 2.922467 2.774674 4.031180 5.034652 5.610476 7.889919 8.620952
+    ## 2 0.8110115 1.944451 4.482488 3.773827 4.931593 4.484011 7.905477 7.637711
     ##         c9       c10
-    ## 1 7.334099 10.532918
-    ## 2 8.116297  9.420532
+    ## 1 7.689950  9.582965
+    ## 2 8.774998 11.081974
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.6851457 2.181617 1.232219 4.352623 4.396439 6.140868 6.357915 8.534720
-    ## 2 0.7779760 2.848980 2.468172 3.014066 4.884404 6.394833 6.077894 6.614088
-    ##         c9      c10
-    ## 1  8.70774 9.417683
-    ## 2 10.15478 9.077799
+    ##         c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1 2.406717 2.180609 3.638929 4.924313 5.894276 6.786584 5.043983 7.979786
+    ## 2 3.053722 1.003691 1.392055 3.251277 5.312825 6.490162 6.726379 7.092151
+    ##         c9       c10
+    ## 1 8.353521  9.389157
+    ## 2 9.080028 11.399354
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 170.9983 172.0080 172.9907 174.0015 174.9908 175.9982 176.9843 178.0079 
+    ## 171.0099 172.0062 173.0019 174.0058 175.0012 176.0047 177.0044 178.0053 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0092 180.0034 180.9989 182.0094 183.0010 183.9890 185.0003 186.0062 
+    ## 179.0092 180.0006 181.0065 181.9840 183.0035 183.9853 185.0045 185.9914 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0067 187.9758 188.9947 189.9961 190.9871 192.0030 192.9939 193.9879 
+    ## 186.9893 187.9831 189.0075 190.0100 191.0089 191.9813 192.9912 193.9991 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 195.0007 195.9930 196.9931 197.9896 198.9997 200.0107
+    ## 194.9975 195.9973 197.0085 198.0050 199.0026 200.0076
 
 #### Ejercicio 2:
 
@@ -106,13 +106,13 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1570
+    ## [1] 1634
     ## 
     ## [[2]]
-    ## [1] 231
+    ## [1] 240
     ## 
     ## [[3]]
-    ## [1] 7
+    ## [1] 14
     ## 
     ## [[4]]
     ## [1] 1
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1570  231    7    1    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1634  240   14    1    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -255,6 +255,14 @@ qplot(age, circumference, data = Orange, geom = "point",xlab = "años", ylab="ci
 
 En cuanto a los datos, podemos observar que parece que la tendencia para los 5 árboles es que va aumentando el tamaño de la circuferencia de su tronco conforme van pasando los años. Sí, parece que eso de "a más años tienen más grande el tronco" es cierto.
 
+#### Ejercicio 6:
+
+**¿Conoces el dataset *iris* ? También está incluido en el paquete *datasets* y ofrece 150 muestras de tres tipos de flor de lirio, que incluyen información sobre la longitud y el ancho del sépalo y del pétalo, para cada clase de lirio. Explora el contenido de este dataset(estructura interna, resumen...) y realiza un gráfico de puntos como el que se hizo anteriormente. Añade tus propios colores a mano, un título para la legenda...etc. Responde a las siguientes preguntas:**
+
+**a) ¿Observas algún problema en los datos?¿Crees que las clases son fácilmente separables?**
+
+**b) ¿Cuál es la longitud del sépalo según la especie?**
+
 ### Boxplots (o diagramas de cajas y bigotes)
 
 Otra visualización muy típica y útil son los Boxplots. Con ellos se representa visualmente cómo se distribuyen los valores que toma una variable en una cajita. La cajita se divide en tres cuartiles. El segundo cuartil, que se representa con la raya horizontal negra, es la mediana de esos datos. Las rayas verticales que atraviesan la cajita representan valores poco comunes. Concretamente, la raya de abajo representa todos los valores que están entre el primer cuartil y el mínimo valor que no es un outlier, mientras que la de arriba representa valores entre el tercer cuartil y el máximo valor que no es un outlier.
@@ -317,3 +325,21 @@ identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==3),2])
     ## [1] TRUE
 
 ### Histogramas
+
+Lo último que vamos a ver en este taller sobre visualización son los histogramas. Los histogramas representan la frecuencia con la que ocurren ciertos términos en nuestros datos, de una forma fácil de entender. Por ejemplo, podemos usar un histograma para visualizar la frecuencia con la que ocurren los distintos diámetros de tronco entre los árboles del conjunto de datos:
+
+``` r
+ qplot(Orange$circumference,geom = "bar",xlab = "circuferencia del tronco(cm)", ylab="Frecuencia")+geom_histogram(binwidth = 5,fill=I("#ff4000"),colour="#ff8000")+ggtitle("Ocurrencia de circuferencia del tronco")+theme(plot.title = element_text(hjust = 0.5))+scale_colour_discrete( guide = FALSE)
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-13-1.png)
+
+Utilizamos **fill** para indicar el color de relleno y **colour** para indicar el color de la líneas del borde. Como queremos especificar en ancho de las bandas, tenemos que aplicar **geom\_hibstogram()**, pues qplot no acepta ese parámetro, a pesar de que hemos especificado ya que queremos geometría de barras. con `scale_colour_discrete( guide = FALSE)` Estamos eliminando la leyenda de nuestro gráfico.
+
+Podemos hacer lo mismo usando **ggplot**, también de **ggplot2**:
+
+``` r
+ggplot(as.data.frame.numeric(Orange$circumference),aes(x=Orange$circumference,fill=I("#ff4000")))+geom_histogram(binwidth = 5,colour="#ff8000")+xlab("circuferencia del tronco(cm)")+ylab("Frecuencia")+ggtitle("Ocurrencia de circuferencia del tronco")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-14-1.png)
