@@ -247,6 +247,13 @@ serie <- seq(1, 20)
 serie[serie %% 2 == 0]
 ```
 
+O incluso acceder sólo a ciertos índices:
+
+```{r}
+serie[5:10]
+```
+
+
 #### Ejercicio
 
 También podemos acceder a los elementos del vector por el nombre que tengan sus elementos. Por ello, prueba a acceder a las ganancias que has tenido el lunes y el viernes, para ver la suerte que has tenido al empezar tu semana de vacaciones y al terminarla.
@@ -279,6 +286,87 @@ inicio <- Sys.time()
 fin <- Sys.time()
 cat("Tiempo: ", fin - inicio, "s.")
 ```
+
+## Matrices
+
+Las ___matrices___ son elementos que almacenan datos de cualquier tipo, en una estructura con un número de filas y columnas determinado. En R, podemos crear matrices con la función `matrix`.
+
+```{r}
+mi_matriz_por_filas <- matrix(1:9, byrow = T, nrow = 3)
+mi_matriz_por_filas
+```
+```{r}
+mi_matriz_por_columnas <- matrix(1:9, byrow = F, nrow = 3)
+mi_matriz_por_columnas
+```
+
+Otra forma de crear una matriz, es a partir de un vector que contenga la información que queremos representar en forma de matriz, como es el siguiente caso:
+
+```{r}
+v_info_1 <- c(5466.5, 246)
+v_info_2 <- c(456, -567)
+v_info_3 <- c(3249783, 596894)
+
+info <- c(v_info_1, v_info_2, v_info_3)
+
+matriz <- matrix(info, byrow = T, nrow = 3)
+matriz
+```
+
+### Asignar nombres a una matriz
+
+Al igual que pasaba con los vectores, podemos ponerle nombres a nuestra matriz, pero en este caso, en vez de nombrar elemento a elemento, podemos ponerle nombre a las filas y las columnas de la matriz, para que acceder a ellas sea más cómodo. Para ello, podemos usar las funciones `rownames(tu_matriz)` y `colnames(tu_matriz)`.
+
+#### Ejercicio
+
+Genera una matriz de tamaño $2\times4$ a partir de una secuencia de enteros, y nombra las filas y las columnas.
+
+```{r}
+
+```
+
+### Añadir filas y columnas a una matriz
+
+Una vez definida una matriz, siempre es posible añadir una columna nueva o una nueva fila en caso de que nos haga falta. Ambas cosas son muy sencillas puesto que R ofrece dos funciones para realizar esta tarea, `cbind` para añadir una columna y `rbind` para añadir una fila a nuestra matriz. 
+
+La única restricción que tienen estas funciones, es que tienen que tener el mismo número de elementos que la matriz, es decir, que si la matriz tiene cuatro columnas y vamos a añadir una fila, esta fila debe tener cuatro elementos. Lo mismo pasa con a la hora de añadir una columna.
+
+#### Ejercicio
+
+Añade a la matriz anterior una nueva columna y una nueva fila.
+
+```{r}
+
+```
+
+### Acceder a los elementos de una matriz
+
+El acceso a los elementos de una matriz en R, es tan secillo como el acceder a los elementos en un array como has visto anteriormente. Al igual que antes, puedes acceder elemento a elemento a base de bucles `for` ([pincha aquí](https://media.giphy.com/media/vPN3zK9dNL236/giphy.gif)), pero, lo más eficiente es acceder de forma vectorizada a los elementos que queremos acceder.
+
+* Acceder a un elemento en concreto.
+```{r}
+mi_matriz <- matrix(seq(1,100), byrow = T, nrow = 10)
+mi_matriz[5,6]
+```
+
+* Acceder a una fila entera.
+```{r}
+mi_matriz[4,]
+```
+
+* Acceder a una columna entera.
+```{r}
+mi_matriz[,9]
+```
+
+* Acceder a un subconjunto de elementos de la matriz.
+```{r}
+mi_matriz[6:8,3:5]
+```
+
+### Operaciones con matrices
+
+
 
 ## Dataframes
 
