@@ -366,6 +366,16 @@ mi_matriz[6:8,3:5]
 
 ### Operaciones con matrices
 
+Al igual que pasaba con los vectores, podemos realizar operaciones aritméticas básicas con dos matrices, con los operadores `+`, `*`, `-`, `/`, etc. Del mismo modo, podemos realizar operaciones booleanas entre dos matrices.
+
+
+#### Ejercicio
+
+Define dos matrices y prueba el funcionamiento de los operadores aritméticos entre dos matrices y entre un entero y una matriz.
+
+```{r}
+
+```
 
 
 ## Dataframes
