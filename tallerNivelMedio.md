@@ -1,6 +1,6 @@
 Taller nivel medio
 ================
-Cristina HG(@\_musicalnote)
+Cristina Heredia Gómez (@\_musicalnote)
 19-mayo-2017
 
 Bienvenidos al taller nivel medio de R. En él aprenderás a hacer más eficiente tu código con alternativas a los bucles, como son **apply**, **sapply**, **lapply**. También aprenderás a paralelizar tu código R, usando más de un núcleo, y por último aprenderás con un ejemplo distintas formas de particionar un dataset y a hacer algunas de las representaciones gráficas más comunes, como boxplots, nube de puntos o hibstogramas. ¡Empezamos!
@@ -27,11 +27,11 @@ head(dataset[,1:10],2)
 ```
 
     ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.7102389 2.741480 3.502568 4.260312 4.140346 6.880060 6.701179 8.117629
-    ## 2 1.0004105 2.466965 2.532363 3.950517 4.701424 6.239356 6.748838 8.617429
-    ##        c9      c10
-    ## 1 9.37059  8.46757
-    ## 2 8.53432 11.24007
+    ## 1 1.4134424 2.922467 2.774674 4.031180 5.034652 5.610476 7.889919 8.620952
+    ## 2 0.8110115 1.944451 4.482488 3.773827 4.931593 4.484011 7.905477 7.637711
+    ##         c9       c10
+    ## 1 7.689950  9.582965
+    ## 2 8.774998 11.081974
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -48,11 +48,11 @@ head(dataset[,1:10],2)
 ```
 
     ##         c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 1.253699 2.362843 2.018465 4.427257 5.791436 5.240596 5.615392 7.347925
-    ## 2 1.209532 2.347878 3.988460 3.519324 4.418509 7.068082 7.025205 7.415706
-    ##          c9       c10
-    ## 1  9.595624 10.182168
-    ## 2 11.090623  9.481158
+    ## 1 2.406717 2.180609 3.638929 4.924313 5.894276 6.786584 5.043983 7.979786
+    ## 2 3.053722 1.003691 1.392055 3.251277 5.312825 6.490162 6.726379 7.092151
+    ##         c9       c10
+    ## 1 8.353521  9.389157
+    ## 2 9.080028 11.399354
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0130 171.9964 173.0027 174.0146 174.9991 176.0026 176.9863 177.9981 
+    ## 171.0099 172.0062 173.0019 174.0058 175.0012 176.0047 177.0044 178.0053 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 178.9897 180.0011 181.0168 181.9971 183.0096 183.9971 185.0042 186.0071 
+    ## 179.0092 180.0006 181.0065 181.9840 183.0035 183.9853 185.0045 185.9914 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0125 188.0041 188.9988 190.0041 190.9971 192.0025 193.0058 194.0046 
+    ## 186.9893 187.9831 189.0075 190.0100 191.0089 191.9813 192.9912 193.9991 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 194.9955 196.0093 196.9816 197.9995 198.9956 200.0014
+    ## 194.9975 195.9973 197.0085 198.0050 199.0026 200.0076
 
 #### Ejercicio 2:
 
@@ -106,16 +106,16 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1589
+    ## [1] 1634
     ## 
     ## [[2]]
-    ## [1] 226
+    ## [1] 240
     ## 
     ## [[3]]
-    ## [1] 10
+    ## [1] 14
     ## 
     ## [[4]]
-    ## [1] 0
+    ## [1] 1
 
 Como veis, nos devuelve el resultado en una lista. Si quisiéramos el resultado en forma de vector en vez de lista, podemos usar **unlist** sobre la salida de **lapply**.
 
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1589  226   10    0    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1634  240   14    1    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -188,8 +188,158 @@ stopCluster(cl)
 
 (No se incluye el código del algoritmo de Búsqueda local).
 
-#### Ejercicio 5 (Opcional) :
+#### Ejercicio 5 (Opcional):
 
-**Prueba a crear otro dataset como el que creamos al comienzo del taller. Luego paraleliza el código para aplicar una función que eleva cada valor al cuadrado, sobre cada dataset.** **Nota: Es conveniente que crees el cluster con tu número de cores -1.**
+**Crea otro dataset como el que creamos al comienzo del taller, con distinto nombre. Luego crea una lista con ambos datasets usando la función *list* , y paraleliza el código para aplicar sobre cada dataset una función que eleva cada valor al cuadrado. ¡Verás qué rápido lo hace a pesar del tamaño de los datasets!** **Nota: Es conveniente que crees el cluster con tu número de cores -1.**
 
 El paquete **parallel** incluye otras funciones que puedes consultar en [documentación paquete parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf "paquete parallel").
+
+Parte 2: Visualización y particionado de datos
+==============================================
+
+Una buena práctica cada vez que tenemos delante un conjunto de datos es explorar su contenido, echando un vistazo a la estructura de las variables, los rangos en los que se mueven, de qué tipo son... Esto nos da una idea de ante qué problema estamos, y como podemos abordarlo. Para hacer el análisis exploratorio de los datos, podemos usar funciones como **class** para ver la clase de los objetos, **str** para ver información sobre la estructura de los datos o **summary** para ver un resumen del dataset. También es común hacer una representación visual como una nube de puntos, para ver visualmente cómo se distribuyen los datos, y boxplots o hibstogramas para visualizar los rangos en los que toman valores las variables. Veamos un ejemplo:
+
+Con rstudio tenemos incluidos varios datasets que vienen incluidos en el paquete *datasets*. Para ver una lista completa de los datasets incluidos:
+
+``` r
+data()
+```
+
+Vamos a hacer un análisis exploratorio del dataset **Orange**, que incluye datos sobre el crecimiento de 5 naranjos, concretamente la edad del árbol y el grosor de su tronco, cuando se le realizó la medición.
+
+``` r
+# Información sobre estructura
+str(Orange)
+```
+
+    ## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   35 obs. of  3 variables:
+    ##  $ Tree         : Ord.factor w/ 5 levels "3"<"1"<"5"<"2"<..: 2 2 2 2 2 2 2 4 4 4 ...
+    ##  $ age          : num  118 484 664 1004 1231 ...
+    ##  $ circumference: num  30 58 87 115 120 142 145 33 69 111 ...
+    ##  - attr(*, "formula")=Class 'formula'  language circumference ~ age | Tree
+    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    ##  - attr(*, "labels")=List of 2
+    ##   ..$ x: chr "Time since December 31, 1968"
+    ##   ..$ y: chr "Trunk circumference"
+    ##  - attr(*, "units")=List of 2
+    ##   ..$ x: chr "(days)"
+    ##   ..$ y: chr "(mm)"
+
+``` r
+# Resumen del dataset
+summary(Orange)
+```
+
+    ##  Tree       age         circumference  
+    ##  3:7   Min.   : 118.0   Min.   : 30.0  
+    ##  1:7   1st Qu.: 484.0   1st Qu.: 65.5  
+    ##  5:7   Median :1004.0   Median :115.0  
+    ##  2:7   Mean   : 922.1   Mean   :115.9  
+    ##  4:7   3rd Qu.:1372.0   3rd Qu.:161.5  
+    ##        Max.   :1582.0   Max.   :214.0
+
+Con **str** vemos que el dataset está compuesto por 35 filas y 3 columnas, y que una de sus columnas son factores, mientras que las otras dos son numéricas. Con **summary** obtenemos un resumen del dataset, como cual es el mínimo, máximo, media, mediana... de cada columna. Nota: En la columna *Tree* solo se muestra el número de muestras de casa clase porque los datos no son numéricos).
+
+### Nube de puntos
+
+Podemos hacer una primera exploración visual de los datos pintando los datos con la función **qplot** de **ggplot2**. Si no la tenemos instalada, la instalamos con `install.packages('ggplot2')`.
+
+``` r
+library(ggplot2)
+qplot(age, circumference, data = Orange, geom = "point",xlab = "años", ylab="circuferencia del tronco", colour=Tree, main="Crecimiento de los árboles de naranja")+theme(plot.title = element_text(hjust = 0.5))+scale_color_discrete(name="Árbol")
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
+**qplot** es una forma rápida y sencilla de hacer gráficos completos. Le indicamos los datos que queremos representar, qué geometría deseamos ( *geom* ) y qué deseamos poner en los ejes. Con `colour=Tree`, indicamos que nos coloree los datos en función de la clase a la que pertenezca, con los colores por defecto. Si quisiéramos darle unos colores personalizados, podríamos hacerlo añadiendo una nueva capa con **scale\_color\_manual**, lo que nos permitirá cambiar los colores manualmente. Por ejemplo, añadiendo: `scale_color_manual(values = c("#ff0000","#ff4000","#ff8000","#ffbf00","#ffff00")` cambiaríamos los colores por defecto por unos tonos cálidos. Usando el atributo *name* en **scale\_color\_discrete**, ponemos cambiar el título por defecto que le damos a la leyenda. Ésto también podemos hacerlo con **scale\_color\_manual** siempre y cuando especifiquemos también un conjunto de valores. Por último, podemos añadirle un título a nuestro gráfico usando el parámetro **main** o con **ggtitle()**, y podemos guardar la imágen directamente con *ggsave()*.
+
+En cuanto a los datos, podemos observar que parece que la tendencia para los 5 árboles es que va aumentando el tamaño de la circuferencia de su tronco conforme van pasando los años. Sí, parece que eso de "a más años tienen más grande el tronco" es cierto.
+
+#### Ejercicio 6:
+
+**¿Conoces el dataset *iris* ? También está incluido en el paquete *datasets* y ofrece 150 muestras de tres tipos de flor de lirio, que incluyen información sobre la longitud y el ancho del sépalo y del pétalo, para cada clase de lirio. Explora el contenido de este dataset(estructura interna, resumen...) y realiza un gráfico de puntos como el que se hizo anteriormente. Añade tus propios colores a mano, un título para la legenda...etc. Responde a las siguientes preguntas:**
+
+**a) ¿Observas algún problema en los datos?¿Crees que las clases son fácilmente separables?**
+
+**b) ¿Cuál es la longitud del sépalo según la especie?**
+
+### Boxplots (o diagramas de cajas y bigotes)
+
+Otra visualización muy típica y útil son los Boxplots. Con ellos se representa visualmente cómo se distribuyen los valores que toma una variable en una cajita. La cajita se divide en tres cuartiles. El segundo cuartil, que se representa con la raya horizontal negra, es la mediana de esos datos. Las rayas verticales que atraviesan la cajita representan valores poco comunes. Concretamente, la raya de abajo representa todos los valores que están entre el primer cuartil y el mínimo valor que no es un outlier, mientras que la de arriba representa valores entre el tercer cuartil y el máximo valor que no es un outlier.
+
+Por ejemplo, podemos usar boxplots para representar unas variables frente a otras y obtener conclusiones:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-1])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=factor(age),y=circumference,fill=factor(age)))+geom_boxplot()+xlab("años")+ylab("circuferencia")+scale_fill_discrete(name="años")+ggtitle("Representación de circuferencia de tronco por años ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+Donde **d** son los datos que queremos representar (edad y circuferencia), con **fill** indicamos que nos coloree los boxplots con tantos colores por defecto como años hay, con **geom\_boxplot()** indicamos que queremos la geometría de boxplots, y usamos **xlab** e **ylab** para cambiar los nombres de los ejes. Por último, cambiamos el nombre de la legenda con **scale\_fill\_discrete** como ya sabemos, y añadimos un título, que posicionamos.
+
+Con el código anterior, representamos la circuferencia del árbol por años. De nuevo podemos observar que a más años tienen los árboles, mayor diámetro del tronco presentan. También podemos obervar que hay un rango de años \[1004-1582\] donde es difícil distinguir la edad esacta que tiene el árbol en función de la circuferencia, y viceversa, pues muchos valores se solapan.
+
+También podemos representar la circuferencia del árbol frente al tipo de árbol que es:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-2])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=Tree,y=circumference,fill=Tree))+geom_boxplot()+xlab("clase de árbol")+ylab("circuferencia")+scale_fill_discrete(name="Árbol")+ggtitle("Representación de circuferencia de tronco por tipo de árbol ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+Pudiendo observar que los árboles 1, 3 y 5 han presentado en general en las mediciones realizadas menor diámetro de tronco que los árboles 2 y 4. Sin embargo, dado que los 5 árboles son 5 naranjos, es sensato pensar que esto podría deberse a que quizás no se les han tomado las mediciones a la misma edad. Pero veamos si esta hipótesis tiene o no fundamento. Representemos la edad a la que se le hicieron las mediciones a los árboles frente a los 5 tipos de árboles:
+
+``` r
+# obtenemos las columnas de años y circuferencia
+d<-subset(Orange[,-3])
+# lo pasamos a data frame para que ggplot lo sepa manejar
+d<-as.data.frame(d)
+# creamos el gráfico
+ggplot(d,aes(x=Tree,y=age,fill=Tree))+geom_boxplot()+xlab("clase de árbol")+ylab("año en que se tomó medición")+scale_fill_discrete(name="Árbol")+ggtitle("Año en el que se tomó la medición por tipo de árbol ")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+A la vista del gráfico, podemos afirmar que los 5 árboles fueron medidos cuando tenían la misma edad, y por eso todos lo boxplots del gráfico toman los mismos valores. Podemos comprobarlo no obstante con la función **identical**:
+
+``` r
+identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==2),2])
+```
+
+    ## [1] TRUE
+
+``` r
+identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==3),2])
+```
+
+    ## [1] TRUE
+
+### Histogramas
+
+Lo último que vamos a ver en este taller sobre visualización son los histogramas. Los histogramas representan la frecuencia con la que ocurren ciertos términos en nuestros datos, de una forma fácil de entender. Por ejemplo, podemos usar un histograma para visualizar la frecuencia con la que ocurren los distintos diámetros de tronco entre los árboles del conjunto de datos:
+
+``` r
+ qplot(Orange$circumference,geom = "bar",xlab = "circuferencia del tronco(cm)", ylab="Frecuencia")+geom_histogram(binwidth = 5,fill=I("#ff4000"),colour="#ff8000")+ggtitle("Ocurrencia de circuferencia del tronco")+theme(plot.title = element_text(hjust = 0.5))+scale_colour_discrete( guide = FALSE)
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-13-1.png)
+
+Utilizamos **fill** para indicar el color de relleno y **colour** para indicar el color de la líneas del borde. Como queremos especificar en ancho de las bandas, tenemos que aplicar **geom\_hibstogram()**, pues qplot no acepta ese parámetro, a pesar de que hemos especificado ya que queremos geometría de barras. con `scale_colour_discrete( guide = FALSE)` Estamos eliminando la leyenda de nuestro gráfico.
+
+Podemos hacer lo mismo usando **ggplot**, también de **ggplot2**:
+
+``` r
+ggplot(as.data.frame.numeric(Orange$circumference),aes(x=Orange$circumference,fill=I("#ff4000")))+geom_histogram(binwidth = 5,colour="#ff8000")+xlab("circuferencia del tronco(cm)")+ylab("Frecuencia")+ggtitle("Ocurrencia de circuferencia del tronco")+theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-14-1.png)
