@@ -188,7 +188,7 @@ names(un_plato) <- c("Nombre", "Tipo")
 names(elementos) <- c("Elemento", "Estado")
 ```
 
-### Operaciones aritméticas y otras funciones
+### Operaciones con arrays y otras funciones
 
 Al igual que se pueden realizar operaciones aritméticas con variables, esto también es posible realizarlo con nuestros arrays. Hay que tener en cuenta, que estas operaciones se hacen elemento a elemento. Por ejemplo:
 
@@ -201,6 +201,13 @@ cat("* Resta:", a-b)
 cat("* Multiplicación:", a*b)
 cat("* División:", a/b)
 ```
+
+A su vez, también podemos realizar operaciones booleanas con arrays, utilizando los operadores `<`, `>`, `==`, etc. Estas operaciones no tienen por qué ser solo con arrays, sino que podemos comparar un array con un entero por ejemplo, y la operación booleana se aplica elemento a elemento con el entero con el que estamos comparando.
+
+```{r}
+
+```
+
 Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de calcular la sumatoria de un vector, como es el caso de la función `sum`, el producto de los elementos de un vector, en este caso es `prod`, la media, para la cual llamaremos a `mean`, etc. Además de funciones como `max` o `min`.
 
 #### Ejercicio
