@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##         c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.701442 2.295312 1.896628 2.563154 5.918597 5.818981 4.962997 8.026448
-    ## 2 1.229086 2.745715 3.406243 5.751439 6.112947 5.564240 7.134196 6.940790
-    ##         c9       c10
-    ## 1 9.497410 10.013261
-    ## 2 8.507499  9.342837
+    ##           c1       c2       c3       c4       c5       c6       c7
+    ## 1  0.4257519 1.466172 3.666870 3.637800 3.593805 5.880237 6.423245
+    ## 2 -0.7323221 4.066882 4.233015 4.742546 5.763055 7.149386 8.010008
+    ##         c8       c9       c10
+    ## 1 6.972277 8.296800  9.359741
+    ## 2 8.326721 8.165355 10.106913
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##           c1       c2       c3       c4       c5       c6       c7
-    ## 1 -0.2159634 2.696901 3.750984 4.099094 4.806355 7.208845 9.912059
-    ## 2  2.2788029 2.766671 3.527978 3.083968 4.518238 5.523443 5.329621
-    ##          c8       c9       c10
-    ## 1 10.027463 9.416313  9.819891
-    ## 2  9.064062 8.993394 10.133018
+    ##          c1        c2       c3       c4       c5       c6       c7
+    ## 1 1.6362300 1.9480161 3.668058 5.314274 4.357837 6.440521 7.557654
+    ## 2 0.3792762 0.8968573 2.014382 2.144908 3.522807 4.468471 6.274952
+    ##         c8       c9      c10
+    ## 1 7.880451 8.828865 10.54529
+    ## 2 6.565617 9.840067 10.15166
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0190 172.0274 173.0135 174.0270 174.9811 176.0077 177.0009 177.9963 
+    ## 171.0136 172.0167 172.9978 173.9936 175.0088 175.9849 176.9969 178.0030 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0226 179.9954 180.9998 182.0113 183.0080 184.0088 185.0032 185.9894 
+    ## 179.0045 179.9894 180.9764 181.9937 182.9951 183.9744 184.9810 186.0109 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0001 188.0039 188.9938 189.9964 191.0089 191.9937 193.0000 193.9972 
+    ## 187.0063 187.9843 188.9939 190.0032 191.0130 192.0057 192.9822 193.9817 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 195.0032 195.9971 196.9887 198.0040 198.9944 200.0187
+    ## 194.9971 196.0301 196.9927 197.9846 198.9938 199.9905
 
 #### Ejercicio 2:
 
@@ -106,13 +106,13 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1609
+    ## [1] 1611
     ## 
     ## [[2]]
-    ## [1] 206
+    ## [1] 230
     ## 
     ## [[3]]
-    ## [1] 18
+    ## [1] 9
     ## 
     ## [[4]]
     ## [1] 0
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1609  206   18    0    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1611  230    9    0    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -350,7 +350,7 @@ ggplot(as.data.frame.numeric(Orange$circumference),aes(x=Orange$circumference,fi
 
 **Elige un atributo del dataset iris, (por ejemplo, el ancho del pétalo) y representa la frecuencia de sus valores en un histograma. Puedes comprobar que la representación es correcta comprobando luego los valores de la variable.**
 
-Nota: Podéis sacar el valor hexadecimal de los colores en la web [w3schools](https://www.w3schools.com/colors/colors_picker.asp "seleccionador de colores").
+**Nota: Podéis sacar el valor hexadecimal de los colores en la web [w3schools](https://www.w3schools.com/colors/colors_picker.asp "seleccionador de colores").**
 
 ### Particionado de datos
 
@@ -396,7 +396,7 @@ nrow(test)
 
     ## [1] 13
 
-Pero a veces, se necesita particionar los datos de una forma más "avanzada", como puede ser un particionamiento estratificado, o crear varias particiones. Esto puede resultar un quebradero de cabeza en algunos casos, por eso quería aprovechar y añadir esta sección para mencionar el paquete [caret](https://cran.r-project.org/web/packages/caret/index.html "paquete caret"), ya en él podemos encontrar una variedad de métodos de visualización, preprocesado, ajustes de parámetros...etc y segmentación de datos. Éste extenso paquete incluye métodos como **createFolds** o **createDataPartition** que nos hará de forma fácil una división de los datos en varias particiones o una división estratificada de los mismos. Por ejemplo, podemos particionar los datos procurando que en ambos conjuntos caiga el mismo número de muestras de cada clase (de forma estratificada):
+Pero a veces, se necesita particionar los datos de una forma más "avanzada", como puede ser un particionamiento estratificado, o crear varias particiones. Esto puede resultar un quebradero de cabeza en algunos casos, por eso quería aprovechar y añadir esta sección para mencionar el paquete [caret](https://cran.r-project.org/web/packages/caret/index.html "paquete caret"), ya en él podemos encontrar una variedad de métodos de visualización, preprocesado, ajustes de parámetros...etc y segmentación de datos. Este extenso paquete incluye métodos como **createFolds** o **createDataPartition** que nos harán de forma fácil una división de los datos en varias particiones o una división estratificada de los mismos. Por ejemplo, podemos particionar los datos procurando que en ambos conjuntos caiga el mismo número de muestras de cada clase (de forma estratificada):
 
 ``` r
 library(caret)
