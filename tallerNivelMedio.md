@@ -26,12 +26,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 0.9910653 2.688607 3.713706 4.626782 4.438328 6.999173 6.102137 6.176704
-    ## 2 1.7588094 1.746119 3.061867 6.311666 6.698574 5.959415 6.803429 8.560955
-    ##         c9      c10
-    ## 1 9.878001 8.181758
-    ## 2 9.415795 8.501462
+    ##         c1       c2       c3       c4       c5       c6       c7       c8
+    ## 1 0.701442 2.295312 1.896628 2.563154 5.918597 5.818981 4.962997 8.026448
+    ## 2 1.229086 2.745715 3.406243 5.751439 6.112947 5.564240 7.134196 6.940790
+    ##         c9       c10
+    ## 1 9.497410 10.013261
+    ## 2 8.507499  9.342837
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##         c1        c2       c3       c4       c5       c6       c7       c8
-    ## 1 2.143397 0.2886151 3.645928 3.649608 5.133767 6.593345 6.174943 10.81495
-    ## 2 1.339966 2.7456511 3.600153 4.951416 7.297553 6.237349 7.584825  9.29849
-    ##          c9      c10
-    ## 1 10.150361 9.913140
-    ## 2  9.728666 9.328339
+    ##           c1       c2       c3       c4       c5       c6       c7
+    ## 1 -0.2159634 2.696901 3.750984 4.099094 4.806355 7.208845 9.912059
+    ## 2  2.2788029 2.766671 3.527978 3.083968 4.518238 5.523443 5.329621
+    ##          c8       c9       c10
+    ## 1 10.027463 9.416313  9.819891
+    ## 2  9.064062 8.993394 10.133018
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0092 171.9987 173.0043 173.9938 174.9993 175.9951 176.9901 178.0198 
+    ## 171.0190 172.0274 173.0135 174.0270 174.9811 176.0077 177.0009 177.9963 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 178.9947 179.9911 180.9973 182.0217 183.0098 184.0063 185.0148 185.9915 
+    ## 179.0226 179.9954 180.9998 182.0113 183.0080 184.0088 185.0032 185.9894 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0132 188.0121 189.0060 190.0015 190.9798 192.0045 193.0100 194.0062 
+    ## 187.0001 188.0039 188.9938 189.9964 191.0089 191.9937 193.0000 193.9972 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 195.0008 195.9901 197.0111 197.9969 199.0022 200.0004
+    ## 195.0032 195.9971 196.9887 198.0040 198.9944 200.0187
 
 #### Ejercicio 2:
 
@@ -106,16 +106,16 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1560
+    ## [1] 1609
     ## 
     ## [[2]]
-    ## [1] 221
+    ## [1] 206
     ## 
     ## [[3]]
-    ## [1] 14
+    ## [1] 18
     ## 
     ## [[4]]
-    ## [1] 1
+    ## [1] 0
 
 Como veis, nos devuelve el resultado en una lista. Si quisiéramos el resultado en forma de vector en vez de lista, podemos usar **unlist** sobre la salida de **lapply**.
 
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1560  221   14    1    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1609  206   18    0    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -238,7 +238,7 @@ summary(Orange)
     ##  4:7   3rd Qu.:1372.0   3rd Qu.:161.5  
     ##        Max.   :1582.0   Max.   :214.0
 
-Con **str** vemos que el dataset está compuesto por 35 filas y 3 columnas, y que una de sus columnas son factores, mientras que las otras dos son numéricas. Con **summary** obtenemos un resumen del dataset, como cual es el mínimo, máximo, media, mediana... de cada columna. Nota: En la columna *Tree* solo se muestra el número de muestras de casa clase porque los datos no son numéricos).
+Con **str** vemos que el dataset está compuesto por 35 filas y 3 columnas, y que una de sus columnas son factores, mientras que las otras dos son numéricas. Con **summary** obtenemos un resumen del dataset, como cual es el mínimo, máximo, media, mediana... de cada columna. Nota: En la columna *Tree* solo se muestra el número de muestras de casa clase porque los datos no son numéricos.
 
 ### Nube de puntos
 
@@ -265,7 +265,7 @@ En cuanto a los datos, podemos observar que parece que la tendencia para los 5 �
 
 ### Boxplots (o diagramas de cajas y bigotes)
 
-Otra visualización muy típica y útil son los Boxplots. Con ellos se representa visualmente cómo se distribuyen los valores que toma una variable en una cajita. La cajita se divide en tres cuartiles. El segundo cuartil, que se representa con la raya horizontal negra, es la mediana de esos datos. Las rayas verticales que atraviesan la cajita representan valores poco comunes. Concretamente, la raya de abajo representa todos los valores que están entre el primer cuartil y el mínimo valor que no es un outlier, mientras que la de arriba representa valores entre el tercer cuartil y el máximo valor que no es un outlier.
+Otra visualización muy típica y útil son los boxplots. Con ellos se representa visualmente cómo se distribuyen los valores que toma una variable en una cajita. La cajita se divide en tres cuartiles. El segundo cuartil, que se representa con la raya horizontal negra, es la mediana de esos datos. Las rayas verticales que atraviesan la cajita representan valores poco comunes. Concretamente, la raya de abajo representa todos los valores que están entre el primer cuartil y el mínimo valor que no es un outlier, mientras que la de arriba representa valores entre el tercer cuartil y el máximo valor que no es un outlier.
 
 Por ejemplo, podemos usar boxplots para representar unas variables frente a otras y obtener conclusiones:
 
@@ -326,7 +326,7 @@ identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==3),2])
 
 #### Ejercicio 7:
 
-**Explora visualmente el dataset de iris, esta vez usando boxplots. Representa la longitud del pétalo por tipo de flor, el ancho del pétalo por tipo de flor y repite lo mismo para el sépalo. ¿Qué observas en los datos? **
+**Explora visualmente el dataset de iris, esta vez usando boxplots. Representa la longitud del pétalo por tipo de flor, el ancho del pétalo por tipo de flor y repite lo mismo para el sépalo. ¿Qué observas en los datos?**
 
 ### Histogramas
 
