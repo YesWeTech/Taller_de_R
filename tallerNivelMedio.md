@@ -27,11 +27,11 @@ head(dataset[,1:10],2)
 ```
 
     ##          c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 1.4134424 2.922467 2.774674 4.031180 5.034652 5.610476 7.889919 8.620952
-    ## 2 0.8110115 1.944451 4.482488 3.773827 4.931593 4.484011 7.905477 7.637711
-    ##         c9       c10
-    ## 1 7.689950  9.582965
-    ## 2 8.774998 11.081974
+    ## 1 0.9910653 2.688607 3.713706 4.626782 4.438328 6.999173 6.102137 6.176704
+    ## 2 1.7588094 1.746119 3.061867 6.311666 6.698574 5.959415 6.803429 8.560955
+    ##         c9      c10
+    ## 1 9.878001 8.181758
+    ## 2 9.415795 8.501462
 
 Te habrás percatado de que tarda unos segundos. Ahora hacemos lo mismo funcional:
 
@@ -47,12 +47,12 @@ colnames(dataset)<-paste("c",1:200,sep = "")
 head(dataset[,1:10],2)
 ```
 
-    ##         c1       c2       c3       c4       c5       c6       c7       c8
-    ## 1 2.406717 2.180609 3.638929 4.924313 5.894276 6.786584 5.043983 7.979786
-    ## 2 3.053722 1.003691 1.392055 3.251277 5.312825 6.490162 6.726379 7.092151
-    ##         c9       c10
-    ## 1 8.353521  9.389157
-    ## 2 9.080028 11.399354
+    ##         c1        c2       c3       c4       c5       c6       c7       c8
+    ## 1 2.143397 0.2886151 3.645928 3.649608 5.133767 6.593345 6.174943 10.81495
+    ## 2 1.339966 2.7456511 3.600153 4.951416 7.297553 6.237349 7.584825  9.29849
+    ##          c9      c10
+    ## 1 10.150361 9.913140
+    ## 2  9.728666 9.328339
 
 ¿Has notado la diferencia? Aunque en este caso la diferencia de tiempo no es muy grande (~3s), es sólo un ejemplo muy simple para ilustrar. Cuando trabajamos con datasets más grandes u operaciones más complejas la diferencia puede llegar a ser de horas.
 
@@ -78,13 +78,13 @@ tail(col.means,30)
 ```
 
     ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0099 172.0062 173.0019 174.0058 175.0012 176.0047 177.0044 178.0053 
+    ## 171.0092 171.9987 173.0043 173.9938 174.9993 175.9951 176.9901 178.0198 
     ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0092 180.0006 181.0065 181.9840 183.0035 183.9853 185.0045 185.9914 
+    ## 178.9947 179.9911 180.9973 182.0217 183.0098 184.0063 185.0148 185.9915 
     ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 186.9893 187.9831 189.0075 190.0100 191.0089 191.9813 192.9912 193.9991 
+    ## 187.0132 188.0121 189.0060 190.0015 190.9798 192.0045 193.0100 194.0062 
     ##     c195     c196     c197     c198     c199     c200 
-    ## 194.9975 195.9973 197.0085 198.0050 199.0026 200.0076
+    ## 195.0008 195.9901 197.0111 197.9969 199.0022 200.0004
 
 #### Ejercicio 2:
 
@@ -106,10 +106,10 @@ head(negatives.count,4)
 ```
 
     ## [[1]]
-    ## [1] 1634
+    ## [1] 1560
     ## 
     ## [[2]]
-    ## [1] 240
+    ## [1] 221
     ## 
     ## [[3]]
     ## [1] 14
@@ -134,7 +134,7 @@ negatives.count<-sapply(1:ncol(dataset), function(i){
 negatives.count
 ```
 
-    ##   [1] 1634  240   14    1    0    0    0    0    0    0    0    0    0    0
+    ##   [1] 1560  221   14    1    0    0    0    0    0    0    0    0    0    0
     ##  [15]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [29]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ##  [43]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
@@ -324,6 +324,10 @@ identical(Orange[which(Orange$Tree==1),2],Orange[which(Orange$Tree==3),2])
 
     ## [1] TRUE
 
+#### Ejercicio 7:
+
+**Explora visualmente el dataset de iris, esta vez usando boxplots. Representa la longitud del pétalo por tipo de flor, el ancho del pétalo por tipo de flor y repite lo mismo para el sépalo. ¿Qué observas en los datos? **
+
 ### Histogramas
 
 Lo último que vamos a ver en este taller sobre visualización son los histogramas. Los histogramas representan la frecuencia con la que ocurren ciertos términos en nuestros datos, de una forma fácil de entender. Por ejemplo, podemos usar un histograma para visualizar la frecuencia con la que ocurren los distintos diámetros de tronco entre los árboles del conjunto de datos:
@@ -342,4 +346,83 @@ Podemos hacer lo mismo usando **ggplot**, también de **ggplot2**:
 ggplot(as.data.frame.numeric(Orange$circumference),aes(x=Orange$circumference,fill=I("#ff4000")))+geom_histogram(binwidth = 5,colour="#ff8000")+xlab("circuferencia del tronco(cm)")+ylab("Frecuencia")+ggtitle("Ocurrencia de circuferencia del tronco")+theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](tallerNivelMedio_files/figure-markdown_github/unnamed-chunk-14-1.png)
+#### Ejercicio 8:
+
+**Elige un atributo del dataset iris, (por ejemplo, el ancho del pétalo) y representa la frecuencia de sus valores en un histograma. Puedes comprobar que la representación es correcta comprobando luego los valores de la variable.**
+
+Nota: Podéis sacar el valor hexadecimal de los colores en la web [w3schools](https://www.w3schools.com/colors/colors_picker.asp "seleccionador de colores").
+
+### Particionado de datos
+
+Una necesidad cuando se trabaja con datos es particionar el conjunto de muestras, especialmente en ciencia de datos, cuando se suele trabajar con un conjunto de entrenamiento y otro de test. Hay muchas formas de particionar un dataset, y dependiendo de lo que necesitemos a veces tendremos que hacerlo de una forma u otra.
+
+La forma más usual de proceder si no se requieren especificaciones concretas, es destinar un porcentaje a test y otro a entrenamiento, que suele ser 60-80% para entrenamiento y el resto para test, dependiendo del número de muestras de las que se disponga. Por ejemplo, si queremos destinar el 65% de los datos de **Orange** a entrenamiento y el resto para test:
+
+``` r
+# obtenemos los primeros datos que formen el 65%
+nMuestrasTrain<-as.integer(nrow(Orange)*0.65)
+# asignamos a sus respectivos conjuntos
+train<-Orange[1:nMuestrasTrain,]
+test<-Orange[(nMuestrasTrain+1):nrow(Orange),]
+# comprobamos el número de muestras de cada dataset
+nrow(train)
+```
+
+    ## [1] 22
+
+``` r
+nrow(test)
+```
+
+    ## [1] 13
+
+Otra forma de dividir un dataset es aleatorizando las muestras que se distribuyen en cada conjunto. En el ejemplo anterior, creábamos un conjunto de train con el 65% de las primeras muestras, mientras que el resto iba para test. Pero así siempre tendríamos las mismas muestras para train y para test. Una forma de resolverlo, es destinar el 65% de las muestras a train tomando esas muestras aleatoriamente, y añadir las restantes al conjunto de test:
+
+``` r
+# tomamos n muestras aleatorias del dataset
+muestrasAleatorias<-sample(1:nrow(Orange),nMuestrasTrain)
+# asignamos a sus respectivos conjuntos
+train<-Orange[muestrasAleatorias,]
+test<-Orange[-muestrasAleatorias,]
+# comprobamos el número de muestras de cada dataset
+nrow(train)
+```
+
+    ## [1] 22
+
+``` r
+nrow(test)
+```
+
+    ## [1] 13
+
+Pero a veces, se necesita particionar los datos de una forma más "avanzada", como puede ser un particionamiento estratificado, o crear varias particiones. Esto puede resultar un quebradero de cabeza en algunos casos, por eso quería aprovechar y añadir esta sección para mencionar el paquete [caret](https://cran.r-project.org/web/packages/caret/index.html "paquete caret"), ya en él podemos encontrar una variedad de métodos de visualización, preprocesado, ajustes de parámetros...etc y segmentación de datos. Éste extenso paquete incluye métodos como **createFolds** o **createDataPartition** que nos hará de forma fácil una división de los datos en varias particiones o una división estratificada de los mismos. Por ejemplo, podemos particionar los datos procurando que en ambos conjuntos caiga el mismo número de muestras de cada clase (de forma estratificada):
+
+``` r
+library(caret)
+```
+
+    ## Loading required package: lattice
+
+``` r
+muestrasEstratificadas<-unlist(createDataPartition(Orange$Tree,p=0.65))
+# asignamos a sus respectivos conjuntos
+train<-Orange[muestrasEstratificadas,]
+test<-Orange[-muestrasEstratificadas,]
+# comprobamos el número de muestras de cada dataset
+nrow(train)
+```
+
+    ## [1] 25
+
+``` r
+nrow(test)
+```
+
+    ## [1] 10
+
+Si no tienes instalada la librería, puedes instalarla con `install.packages('caret')`, aunque tarda un poco porque es grande.
+
+#### Ejercicio 9:
+
+**Calcula el porcentaje de muestras por clase para cada conjunto de train y test que hemos creado, usando el dataset *Orange*. ¿Qué diferencia hay entre las proporciones obtenidas con los dos primeros métodos y la partición estratificada?**
