@@ -7,11 +7,11 @@ Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
 
 ## Niveles
 
-* [Nivel basico](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelBasico.md): instalar paquetes, crear scripts, hacer operaciones aritmeticas, trabajar con vectores y matrices, tipos de datos y dataframes.
+* [Nivel básico](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelBasico.md): instalar paquetes, crear scripts, hacer operaciones aritmáticas, trabajar con vectores y matrices, tipos de datos y dataframes.
 
-* [Nivel medio](https://github.com/geekandtechgirls/Taller_de_R/blob/master/tallerNivelMedio.md): programacion funcional, funciones apply, paralelizando en R, visualizacion y particionado de datos.
+* [Nivel medio](https://github.com/geekandtechgirls/Taller_de_R/blob/master/tallerNivelMedio.md): programación funcional, funciones apply, paralelizando en R, visualización y particionado de datos.
 
-* [Nivel avanzado](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelAvanzado.md): como enfrentarse a una competicion Kaggle.
+* [Nivel avanzado](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelAvanzado.md): como enfrentarse a una competición Kaggle.
 
 ## Instalando Rstudio
 Para llevar a cabo el taller, usaremos _Rstudio_, un IDE de R que permite trabajar con _Rmarkdown_. 
