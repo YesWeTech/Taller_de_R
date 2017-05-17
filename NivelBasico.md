@@ -94,7 +94,7 @@ Los operadores numéricos básicos de R son:
 | Resta          | -        |
 | Multiplicación | \*       |
 | División       | /        |
-| Exponente      | ^ ó \*\* |
+| Exponente      | ^ o \*\* |
 | Módulo         | %%       |
 
 Por ejemplo:
@@ -116,6 +116,28 @@ edad_gatos
 ```
 
     ## [1] 12
+
+### Ejercicio
+
+La señora de los gatos de los Simpson(TM) tiene 7 gatos, de edades:
+
+| Nombre    | Edad |
+|-----------|------|
+| Misifú    | 8    |
+| Blanquito | 5    |
+| Garfield  | 1    |
+| Isis      | 9    |
+| Trece     | 6    |
+| Nerón     | 3    |
+| Don Gato  | 3    |
+
+**Calcula la media de edad de los gatetes.**
+
+### Ejercicio
+
+(De <https://www.smartick.es/blog/index.php/problemas-con-potencias/>) La Hidra de Lerna es un personaje mitológico que aparece en algunas historias, como la de las 12 pruebas de Hércules. La Hidra era un monstruo con 1 cabeza, pero si se le cortaba, le nacían 2 cabezas en su lugar. Si un héroe intentaba vencerla cortándole todas sus cabezas cada día, ¿cuántas cabezas tendría la Hidra el tercer día? ¿y al cabo de 10 días intentando vencerla?
+
+**Hazlo con y sin potencias.**
 
 Tipos de datos
 --------------
@@ -312,7 +334,7 @@ fin <- Sys.time()
 cat("Tiempo: ", fin - inicio, "s.")
 ```
 
-    ## Tiempo:  0.003709078 s.
+    ## Tiempo:  0.006757736 s.
 
 ``` r
 serie <- seq(1, 1000)
@@ -324,7 +346,7 @@ fin <- Sys.time()
 cat("Tiempo: ", fin - inicio, "s.")
 ```
 
-    ## Tiempo:  0.001196146 s.
+    ## Tiempo:  0.002325058 s.
 
 Matrices
 --------

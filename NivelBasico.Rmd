@@ -91,7 +91,7 @@ Suma     | +
 Resta    | - 
 Multiplicación | *
 División | /
-Exponente | ^ ó **
+Exponente | ^ o **
 Módulo | %%
 
 Por ejemplo:
@@ -108,6 +108,35 @@ edad_Fausto <- 5
 edad_Kimi <- 1
 edad_gatos <- edad_Nathan + edad_Fausto + edad_Kimi
 edad_gatos
+```
+
+### Ejercicio
+
+La señora de los gatos de los Simpson(TM) tiene 7 gatos, de edades:
+
+Nombre | Edad
+------ | ----
+Misifú | 8
+Blanquito | 5 
+Garfield | 1
+Isis | 9
+Trece | 6
+Nerón | 3
+Don Gato | 3
+
+__Calcula la media de edad de los gatetes.__
+
+```{r}
+```
+
+### Ejercicio
+
+(De https://www.smartick.es/blog/index.php/problemas-con-potencias/)
+La Hidra de Lerna es un personaje mitológico que aparece en algunas historias, como la de las 12 pruebas de Hércules. La Hidra era un monstruo con 1 cabeza, pero si se le cortaba, le nacían 2 cabezas en su lugar. Si un héroe intentaba vencerla cortándole todas sus cabezas cada día, ¿cuántas cabezas tendría la Hidra el tercer día? ¿y al cabo de 10 días intentando vencerla?
+
+__Hazlo con y sin potencias.__
+
+```{r}
 ```
 
 ## Tipos de datos
