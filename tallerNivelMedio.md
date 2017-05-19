@@ -282,7 +282,7 @@ ggplot(d,aes(x=factor(age),y=circumference,fill=factor(age)))+geom_boxplot()+xla
 
 Donde **d** son los datos que queremos representar (edad y circuferencia), con **fill** indicamos que nos coloree los boxplots con tantos colores por defecto como años hay, con **geom\_boxplot()** indicamos que queremos la geometría de boxplots, y usamos **xlab** e **ylab** para cambiar los nombres de los ejes. Por último, cambiamos el nombre de la legenda con **scale\_fill\_discrete** como ya sabemos, y añadimos un título, que posicionamos.
 
-Con el código anterior, representamos la circuferencia del árbol por años. De nuevo podemos observar que a más años tienen los árboles, mayor diámetro del tronco presentan. También podemos obervar que hay un rango de años \[1004-1582\] donde es difícil distinguir la edad esacta que tiene el árbol en función de la circuferencia, y viceversa, pues muchos valores se solapan.
+Con el código anterior, representamos la circuferencia del árbol por años. De nuevo podemos observar que a más años tienen los árboles, mayor diámetro del tronco presentan. También podemos obervar que hay un rango de años \[1004-1582\] donde es difícil distinguir la edad exacta que tiene el árbol en función de la circuferencia, y viceversa, pues muchos valores se solapan.
 
 También podemos representar la circuferencia del árbol frente al tipo de árbol que es:
 
