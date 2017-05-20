@@ -7,7 +7,7 @@ Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
 
 ## Niveles
 
-* [Nivel básico](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelBasico.md): instalar paquetes, crear scripts, hacer operaciones aritmáticas, trabajar con vectores y matrices, tipos de datos y dataframes.
+* [Nivel básico](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelBasico.md): instalar paquetes, crear scripts, hacer operaciones aritméticas, trabajar con vectores y matrices, tipos de datos y dataframes.
 
 * [Nivel medio](https://github.com/geekandtechgirls/Taller_de_R/blob/master/tallerNivelMedio.md): programación funcional, funciones apply, paralelizando en R, visualización y particionado de datos.
 
