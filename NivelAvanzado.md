@@ -14,7 +14,7 @@ Titanic fue un transatlántico que naufragó la noche del 14 de abril de 1912 al
 
 El objetivo de esta competición es el de predecir qué personas sobrevivieron (jugaremos a ser Dioses).
 
-![Hundimiento del Titanic.](C:\Users\Ana\Dropbox%20(Personal)\AlhambraAnalytics\TallerR\titanic.jpg)
+![Hundimiento del Titanic.](https://github.com/geekandtechgirls/Taller_de_R/blob/master/imgs/titanic.jpg)
 
 Descargar los Datasets
 ----------------------
@@ -328,7 +328,7 @@ ggplot(meltData, aes(x = value)) + facet_wrap(~variable, scales = "free") +
   ggtitle("Histograma") + theme(plot.title = element_text(lineheight=.8, face="bold")) 
 ```
 
-![Histograma.](C:\Users\Ana\Dropbox%20(Personal)\AlhambraAnalytics\TallerR\histo.jpg)
+![Histograma.](https://github.com/geekandtechgirls/Taller_de_R/blob/master/imgs/histo.jpg)
 
 -   **Ejercicio 3:** Realiza el mismo histograma pero para las variables de test. ¿Tienen una distribución parecida?
 -   **Ejercicio 4:** ¿Se te ocurre otro gráfico que ayude a realizar un análisi visual de los datos?
