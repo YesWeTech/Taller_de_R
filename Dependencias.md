@@ -12,6 +12,12 @@ Será necesario instalar las siguientes librerías:
 - caret
 - dplyr
 
+### Nivel avanzado
+Será necesario instalar las siguientes librerías:
+- ggplot2
+- reshape2
+- caret
+
+
 Recordad que las dependencias se pueden instalar desde una consola de Rstudio con el comando: `install.packages("nombre_paquete", dependencies=T)`, por ejemplo: `install.packages("parallel", dependencies=T)`.
 
-### Nivel avanzado
