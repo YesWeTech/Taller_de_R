@@ -77,13 +77,13 @@ col.means<-apply(dataset,2,mean)
 tail(col.means,30)
 ```
 
-    ##     c171     c172     c173     c174     c175     c176     c177     c178 
-    ## 171.0136 172.0167 172.9978 173.9936 175.0088 175.9849 176.9969 178.0030 
-    ##     c179     c180     c181     c182     c183     c184     c185     c186 
-    ## 179.0045 179.9894 180.9764 181.9937 182.9951 183.9744 184.9810 186.0109 
-    ##     c187     c188     c189     c190     c191     c192     c193     c194 
-    ## 187.0063 187.9843 188.9939 190.0032 191.0130 192.0057 192.9822 193.9817 
-    ##     c195     c196     c197     c198     c199     c200 
+    ##     c171     c172     c173     c174     c175     c176     c177     c178
+    ## 171.0136 172.0167 172.9978 173.9936 175.0088 175.9849 176.9969 178.0030
+    ##     c179     c180     c181     c182     c183     c184     c185     c186
+    ## 179.0045 179.9894 180.9764 181.9937 182.9951 183.9744 184.9810 186.0109
+    ##     c187     c188     c189     c190     c191     c192     c193     c194
+    ## 187.0063 187.9843 188.9939 190.0032 191.0130 192.0057 192.9822 193.9817
+    ##     c195     c196     c197     c198     c199     c200
     ## 194.9971 196.0301 196.9927 197.9846 198.9938 199.9905
 
 #### Ejercicio 2:
@@ -107,13 +107,13 @@ head(negatives.count,4)
 
     ## [[1]]
     ## [1] 1611
-    ## 
+    ##
     ## [[2]]
     ## [1] 230
-    ## 
+    ##
     ## [[3]]
     ## [1] 9
-    ## 
+    ##
     ## [[4]]
     ## [1] 0
 
@@ -150,6 +150,42 @@ negatives.count
     ## [183]    0    0    0    0    0    0    0    0    0    0    0    0    0    0
     ## [197]    0    0    0    0
 
+### Filtrado elegante con Dplyr
+
+*Dplyr* es un paquete creado para la manipulación de datos, proporciona un conjunto de funciones para ayudar a resolver los problemas de manipulación de datos más comunes, entre ellos:
+
+- `mutate()` Añade nuevas variables a un dataset en función de variables ya existentes.
+- `select()` Selecciona variables basandose en sus nombres.
+- `filter()` Selecciona instancias basandose en sus valores.
+- `summarise()` Reduce varios valores a uno solo.
+- `arrange()` Re-ordena las filas.
+
+``` r
+require(dplyr)
+
+Orange %>% dplyr::mutate(circumferenceTimes2 = circumference^2)
+dplyr::mutate(Orange, circumferenceTimes2 = circumference^2) # Equivalente
+
+Orange %>% dplyr::select(age)  # Selecciona solo columna age
+Orange %>% dplyr::select(-age) # Selecciona todas menos age
+Orange %>% dplyr::select(age:circumference) # Seleccionar desde age a circumference
+Orange %>% dplyr::select_if(is.numeric) # Seleccionar las columnas que cumplan ciertos requisitos
+
+Orange %>% dplyr::filter(age < 500) # Seleccionar filas cuya columna age sea menor de 500
+Orange %>% dplyr::filter(circumference %in% 1:100) # Seleccionar filas cuya circunferencia esté comprendida entre 1 y 100
+Orange %>% dplyr::filter(age < 500, circumference %in% 1:30)
+
+Orange %>% dplyr::summarise(edadMediana = median(age)) # La mediana de la edad
+
+Orange %>% dplyr::arrange(age, circumference) # Ordena las filas según el criterio dado
+
+## Se pueden encadenar operaciones
+Orange %>%
+    dplyr::mutate(circumferenceTimes2 = circumference^2) %>%
+    dplyr::filter(age < 500) %>%
+    dplyr::arrange(age, circumference)
+```
+
 #### Ejercicio 3:
 
 **El ejemplo que hemos hecho con lapply y sapply no es muy reutilizable, ya que estamos asumiendo que existe una variable que se llama *dataset* y que contiene un dataset. ¿Cómo podemos arreglarlo?** **Pista: las funciones pueden recibir más de un sólo parámetro.**
@@ -171,9 +207,9 @@ Por ejemplo, se puede paralelizar la generación de 25 soluciones binarias aleat
   library(parallel)
 # obtenemos nuestro número de cores
   no_cores <- detectCores()
-# creamos el cluster  
+# creamos el cluster
   cl <- makeCluster(no_cores-1,type="FORK")
-# utilizamos parLapply , pasándole el cluster  
+# utilizamos parLapply , pasándole el cluster
   ModelosBL <- parLapply(cl,seq_along(1:25),  function(i){
     set.seed(12345*i)
     # genera una solución vecina aleatoria
@@ -181,8 +217,8 @@ Por ejemplo, se puede paralelizar la generación de 25 soluciones binarias aleat
     # optimizar con búsqueda local
     modelo<-LocalSearchModified(vecina)
     modelo
-  }) 
-# detenemos el cluster  
+  })
+# detenemos el cluster
 stopCluster(cl)
 ```
 
@@ -217,7 +253,7 @@ str(Orange)
     ##  $ age          : num  118 484 664 1004 1231 ...
     ##  $ circumference: num  30 58 87 115 120 142 145 33 69 111 ...
     ##  - attr(*, "formula")=Class 'formula'  language circumference ~ age | Tree
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv>
     ##  - attr(*, "labels")=List of 2
     ##   ..$ x: chr "Time since December 31, 1968"
     ##   ..$ y: chr "Trunk circumference"
@@ -230,12 +266,12 @@ str(Orange)
 summary(Orange)
 ```
 
-    ##  Tree       age         circumference  
-    ##  3:7   Min.   : 118.0   Min.   : 30.0  
-    ##  1:7   1st Qu.: 484.0   1st Qu.: 65.5  
-    ##  5:7   Median :1004.0   Median :115.0  
-    ##  2:7   Mean   : 922.1   Mean   :115.9  
-    ##  4:7   3rd Qu.:1372.0   3rd Qu.:161.5  
+    ##  Tree       age         circumference
+    ##  3:7   Min.   : 118.0   Min.   : 30.0
+    ##  1:7   1st Qu.: 484.0   1st Qu.: 65.5
+    ##  5:7   Median :1004.0   Median :115.0
+    ##  2:7   Mean   : 922.1   Mean   :115.9
+    ##  4:7   3rd Qu.:1372.0   3rd Qu.:161.5
     ##        Max.   :1582.0   Max.   :214.0
 
 Con **str** vemos que el dataset está compuesto por 35 filas y 3 columnas, y que una de sus columnas son factores, mientras que las otras dos son numéricas. Con **summary** obtenemos un resumen del dataset, como cual es el mínimo, máximo, media, mediana... de cada columna. Nota: En la columna *Tree* solo se muestra el número de muestras de casa clase porque los datos no son numéricos.
