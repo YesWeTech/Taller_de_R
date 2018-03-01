@@ -461,4 +461,4 @@ Si no tienes instalada la librería, puedes instalarla con `install.packages('ca
 
 #### Ejercicio 9:
 
-**Calcula el porcentaje de muestras por clase para cada conjunto de train y test que hemos creado, usando el dataset *Orange*. ¿Qué diferencia hay entre las proporciones obtenidas con los dos primeros métodos y la partición estratificada?**
+**Calcula el porcentaje de muestras por clase para cada conjunto de train y test que hemos creado, usando el dataset *Orange*. (Puedes usar la función summary para obtener el número de muestras de cada clase, con summary(dataset$variable_clase)) ¿Qué diferencia hay entre las proporciones obtenidas con los dos primeros métodos y la partición estratificada?**
