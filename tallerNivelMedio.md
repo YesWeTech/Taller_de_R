@@ -261,7 +261,7 @@ En cuanto a los datos, podemos observar que parece que la tendencia para los 5 �
 
 **a) ¿Observas algún problema en los datos?¿Crees que las clases son fácilmente separables?**
 
-**b) ¿Cuál es la longitud del sépalo según la especie?**
+**b) ¿Cuál es la longitud media del sépalo según la especie?**
 
 ### Boxplots (o diagramas de cajas y bigotes)
 
