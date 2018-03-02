@@ -46,10 +46,10 @@ install.packages('nombre_del_paquete')
 
 ![](imgs/instalar_paquete.png)
 
-También podemos instalar paquetes nuevos desde la línea de comandos de la siguiente manera:
+TambiÃ©n podemos instalar paquetes nuevos desde la lÃ­nea de comandos de la siguiente manera:
 
 ```{r}
-install.packages('nombre_del_paquete', dependencies = TRUE)
+# install.packages('nombre_del_paquete', dependencies = TRUE)
 ```
 
 Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
@@ -59,7 +59,7 @@ require(nombre_del_paquete)
 ```
 
 ### Ejercicio
-__Instala el paquete 'knitr', muy Ãºtil para realizar documentos con código de R incrustado, como este tutorial.__
+__Instala el paquete 'knitr', muy Ãºtil para realizar documentos con cÃ³digo de R incrustado, como este tutorial.__
 
 ```{r}
 ```
@@ -225,7 +225,7 @@ names(elementos) <- c("Elemento", "Estado")
 
 #### Ejercicio
 
-Asigna nombres a los elementos de los vectores de cantidades que ganaste cada día de la semana.
+Asigna nombres a los elementos de los vectores de cantidades que ganaste cada dÃ­a de la semana.
 
 ```{r}
 ```
@@ -310,7 +310,7 @@ Para comprobar que el acceso vectorizado es mÃ¡s rÃ¡pido que con un bucle `for`,
 ```{r}
 serie <- seq(1, 1000)
 
-inicio <- Sys.time() # Así medimos el tiempo
+inicio <- Sys.time() # AsÃ­ medimos el tiempo
 for(i in 1:1000) {
   if(serie[i] %% 2 == 0){
    serie[i] = serie[i] + 1 
@@ -462,7 +462,7 @@ amigos["nombre"]
 
 El operador `$` devuelve un vector mientras que el `[]` devuelve un _Dataframe_ con una Ãºnica columna.
 
-Podemos seleccionar varias columnas, seleccionándolas con un vector:
+Podemos seleccionar varias columnas, seleccion?ndolas con un vector:
 
 ```{r}
 amigos[,c("nombre","altura")]

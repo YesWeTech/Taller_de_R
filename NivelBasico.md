@@ -44,6 +44,12 @@ Para instalar paquetes nuevos en R, tenemos dos opciones:
 
 ![](imgs/instalar_paquete.png)
 
+También podemos instalar paquetes nuevos desde la línea de comandos de la siguiente manera:
+
+``` r
+install.packages('nombre_del_paquete', dependencies = TRUE)
+```
+
 Cuando instalamos un paquete nuevo y lo queremos usar, se lo decimos a R de la siguiente manera:
 
 ``` r
@@ -57,7 +63,7 @@ require(nombre_del_paquete)
 
 ### Ejercicio
 
-**Instala el paquete 'ggplot2', muy útil para visualizar datos y hacer gráficas de todo tipo.**
+**Instala el paquete 'knitr', muy útil para realizar documentos con código de R incrustado, como este tutorial.**
 
 Aritmética con R
 ----------------
@@ -94,7 +100,7 @@ Los operadores numéricos básicos de R son:
 | Resta          | -        |
 | Multiplicación | \*       |
 | División       | /        |
-| Exponente      | ^ o \*\* |
+| Potencias      | ^ o \*\* |
 | Módulo         | %%       |
 
 Por ejemplo:
@@ -233,6 +239,10 @@ names(un_plato) <- c("Nombre", "Tipo")
 names(elementos) <- c("Elemento", "Estado")
 ```
 
+#### Ejercicio
+
+Asigna nombres a los elementos de los vectores de cantidades que ganaste cada día de la semana.
+
 ### Operaciones con arrays y otras funciones
 
 Al igual que se pueden realizar operaciones aritméticas con variables, esto también es posible realizarlo con nuestros arrays. Hay que tener en cuenta, que estas operaciones se hacen elemento a elemento. Por ejemplo:
@@ -264,15 +274,13 @@ cat("* División:", a/b)
 
     ## * División: 0.25 0.4 0.5
 
-A su vez, también podemos realizar operaciones booleanas con arrays, utilizando los operadores `<`, `>`, `==`, etc. Estas operaciones no tienen por qué ser solo con arrays, sino que podemos comparar un array con un entero por ejemplo, y la operación booleana se aplica elemento a elemento con el entero con el que estamos comparando.
+A su vez, también podemos realizar operaciones booleanas con arrays, utilizando los operadores `<`, `>`, `==`, etc. Estas operaciones no tienen por qué ser solo con arrays, sino que podemos comparar un array con un entero por ejemplo, y la operación booleana se aplica elemento a elemento con el entero con el que estamos comparando. Comprueba las relaciones que hay entre a y b:
 
-Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de calcular la sumatoria de un vector, como es el caso de la función `sum`, el producto de los elementos de un vector, en este caso es `prod`, la media, para la cual llamaremos a `mean`, etc. Además de funciones como `max` o `min`.
+Además de esto, R nos ofrece otras funciones ya predefinidas que se encargan de calcular la sumatoria de un vector, como es el caso de la función `sum`; el producto de los elementos de un vector, en este caso es `prod`; la media, para la cual llamaremos a `mean`, etc. Además de funciones como `max` o `min`.
 
 #### Ejercicio
 
-Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Para ello, puedes usar la función que acabas de aprender para asignarle a cada valor el día de la semana correspondiente.
-
-Además de esto, es importante saber la pérdida o ganancia total que has tenido cada día, así como la media total de ganancias durante tus vacaciones y lo que has ganado en total a lo largo de la semana. Para ello, utiliza los conocimientos adquiridos y tus habilidades estadísticas, y no olvides mostrar tus datos por pantalla.
+Siguiendo con el estudio para asegurar tu futuro económico, es importante saber en qué día ganaste o perdiste dinero. Puesto que ya le has asignado a cada valor el día de la semana correspondiente, es importante saber la pérdida o ganancia total que has tenido cada día, así como la media total de ganancias durante tus vacaciones y lo que has ganado en total a lo largo de la semana. Para ello, utiliza los conocimientos adquiridos y tus habilidades estadísticas, y no olvides mostrar tus datos por pantalla.
 
 ### Acceso a un vector
 
@@ -313,6 +321,12 @@ serie[5:10]
 
     ## [1]  5  6  7  8  9 10
 
+``` r
+serie[c(1, 3, 6)]
+```
+
+    ## [1] 1 3 6
+
 #### Ejercicio
 
 También podemos acceder a los elementos del vector por el nombre que tengan sus elementos. Por ello, prueba a acceder a las ganancias que has tenido el lunes y el viernes, para ver la suerte que has tenido al empezar tu semana de vacaciones y al terminarla.
@@ -324,7 +338,7 @@ Para comprobar que el acceso vectorizado es más rápido que con un bucle `for`,
 ``` r
 serie <- seq(1, 1000)
 
-inicio <- Sys.time()
+inicio <- Sys.time() # Así medimos el tiempo
 for(i in 1:1000) {
   if(serie[i] %% 2 == 0){
    serie[i] = serie[i] + 1 
@@ -334,7 +348,7 @@ fin <- Sys.time()
 cat("Tiempo: ", fin - inicio, "s.")
 ```
 
-    ## Tiempo:  0.006757736 s.
+    ## Tiempo:  0.015625 s.
 
 ``` r
 serie <- seq(1, 1000)
@@ -346,7 +360,7 @@ fin <- Sys.time()
 cat("Tiempo: ", fin - inicio, "s.")
 ```
 
-    ## Tiempo:  0.002325058 s.
+    ## Tiempo:  0.001224041 s.
 
 Matrices
 --------
@@ -517,7 +531,7 @@ amigos["nombre"]
 
 El operador `$` devuelve un vector mientras que el `[]` devuelve un *Dataframe* con una única columna.
 
-Podemos seleccionar varias columnas, seleccionandolas con un vector:
+Podemos seleccionar varias columnas, seleccion?ndolas con un vector:
 
 ``` r
 amigos[,c("nombre","altura")]
