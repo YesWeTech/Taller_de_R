@@ -1,9 +1,5 @@
 # Taller_de_R
-Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
-
-* Para apuntarte como alumna, apúntate en [este enlace](https://goo.gl/DtbwvW)
-
-* Para apuntarte como profesora, apúntate en [este otro](https://goo.gl/g2ihgj)
+Estos son los contenidos del taller de R de Geek &amp; Tech Girls. Permanece atenta o atento a las próximas convocatorias en [nuestra web](http://geekandtechgirls.github.io), o bien puedes intentar hacer los ejercicios y mandarnos tus dudas a geek.and.tech.girls@gmail.com
 
 ## Niveles
 
@@ -14,7 +10,7 @@ Contenidos del taller de R de Geek &amp; Tech Girls. Apúntate al taller!
 * [Nivel avanzado](https://github.com/geekandtechgirls/Taller_de_R/blob/master/NivelAvanzado.md): como enfrentarse a una competición Kaggle.
 
 ## Instalando Rstudio
-Para llevar a cabo el taller, usaremos _Rstudio_, un IDE de R que permite trabajar con _Rmarkdown_. 
+Para llevar a cabo el taller, usaremos _Rstudio_, un IDE de R que permite trabajar con _Rmarkdown_.
 
 Para instalar _Rstudio_ en __Ubuntu__ o __Debian__:
 
