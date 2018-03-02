@@ -318,7 +318,7 @@ Siempre es aconsejable acompañar las medidas estadísticas con alguna gráfica 
 dataPlot <- train
 nameVar <- c("Pclass", "Sex", "SibSp", "Parch", "Embarked", "Survived") 
 dataPlot <- dataPlot[ ,nameVar]
-dataPlot[ ,nameVar] <- lapply(dataPlot[,nameVar], as.factor)
+dataPlot <- lapply(dataPlot, as.factor)
 
 # Histograma de las variables seleccionadas
 meltData <- as.data.frame(melt(dataPlot, id.vars="Survived"))
